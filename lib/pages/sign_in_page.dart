@@ -13,11 +13,15 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   void _getSheet() async {
-    http.Response res = await http.get('https://sheets.googleapis.com/v4/spreadsheets/$sheetId', headers: await googleSignIn.currentUser.authHeaders,);
+    http.Response res = await http.get(
+      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId',
+      headers: await googleSignIn.currentUser.authHeaders,
+    );
+
     if (res.statusCode == 200) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ProfileInfoPage()),
+        MaterialPageRoute(builder: (context) => ProfileInfoPage(), settings: RouteSettings(name: formRoot),),
       );
     } else {
       alert(

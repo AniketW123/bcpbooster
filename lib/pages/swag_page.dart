@@ -33,7 +33,6 @@ class _SwagPageState extends State<SwagPage> {
       }),
     );
 
-    print(res.body);
     if (res.statusCode == 200) {
       alert(
         context: context,
@@ -44,6 +43,7 @@ class _SwagPageState extends State<SwagPage> {
             'OK',
             onPressed: () {
               sheetRow = SheetRow();
+              Navigator.popUntil(context, (route) => route.settings.name == formRoot);
             },
           )
         ],
