@@ -3,8 +3,8 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'profile_info_page.dart';
-import 'alert.dart';
-import 'globals.dart';
+import '../util/alert.dart';
+import '../globals.dart';
 
 class SignInPage extends StatefulWidget {
   @override

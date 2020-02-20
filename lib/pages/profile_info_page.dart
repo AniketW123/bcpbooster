@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'alert.dart';
-import 'globals.dart';
+import 'membership_page.dart';
+import '../util/alert.dart';
+import '../globals.dart';
 
 class ProfileInfoPage extends StatefulWidget {
   @override
@@ -27,7 +28,10 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
       appBar: AppBar(
         title: Text('Profile Info'),
         leading: FlatButton(
-          child: Icon(Icons.exit_to_app, color: Colors.white,),
+          child: Icon(
+            Icons.exit_to_app,
+            color: Colors.white,
+          ),
           onPressed: () {
             alert(
               context: context,
@@ -47,7 +51,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                     googleSignIn.disconnect().then((_) => Navigator.popUntil(context, (route) => route.isFirst));
                   },
                 ),
-              ]
+              ],
             );
           },
         ),
@@ -58,25 +62,25 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              DefaultTextField(
+              _FormField(
                 label: 'First name',
                 controller: 'firstName',
               ),
-              DefaultTextField(
+              _FormField(
                 label: 'Last name',
                 controller: 'lastName',
               ),
-              DefaultTextField(
+              _FormField(
                 label: 'Email',
                 controller: 'email',
                 keyboardType: TextInputType.emailAddress,
               ),
-              DefaultTextField(
+              _FormField(
                 label: 'Phone number',
                 controller: 'phoneNum',
                 keyboardType: TextInputType.phone,
               ),
-              DefaultTextField(
+              _FormField(
                 label: 'Address',
                 controller: 'address',
               ),
@@ -84,23 +88,24 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                 children: <Widget>[
                   Expanded(
                     flex: 4,
-                    child: DefaultTextField(
+                    child: _FormField(
                       label: 'City',
                       controller: 'city',
                     ),
                   ),
                   Expanded(
                     flex: 2,
-                    child: DefaultTextField(
+                    child: _FormField(
                       label: 'State',
                       controller: 'state',
                     ),
                   ),
                   Expanded(
                     flex: 3,
-                    child: DefaultTextField(
+                    child: _FormField(
                       label: 'Zip code',
                       controller: 'zip',
+                      keyboardType: TextInputType.number,
                     ),
                   )
                 ],
@@ -112,9 +117,13 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                     for (String controller in _controllers.keys) {
                       sheetRow[controller] = _controllers[controller].text;
                     }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MembershipPage()),
+                    );
                   }
                 },
-              )
+              ),
             ],
           ),
         ),
@@ -123,12 +132,12 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
   }
 }
 
-class DefaultTextField extends StatelessWidget {
+class _FormField extends StatelessWidget {
   final String label;
   final String controller;
   final TextInputType keyboardType;
 
-  DefaultTextField({@required this.label, @required this.controller, this.keyboardType = TextInputType.text});
+  _FormField({@required this.label, @required this.controller, this.keyboardType = TextInputType.text});
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +146,7 @@ class DefaultTextField extends StatelessWidget {
       child: TextFormField(
         controller: _controllers[controller],
         keyboardType: keyboardType,
-        validator: (value)  {
+        validator: (value) {
           if (value.isEmpty) {
             return 'Please enter some text';
           }
@@ -151,4 +160,3 @@ class DefaultTextField extends StatelessWidget {
     );
   }
 }
-
