@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'alert.dart';
 import 'globals.dart';
 
 class ProfileInfoPage extends StatefulWidget {
@@ -28,31 +29,25 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
         leading: FlatButton(
           child: Icon(Icons.exit_to_app, color: Colors.white,),
           onPressed: () {
-            showDialog(
+            alert(
               context: context,
-              builder: (_) => AlertDialog(
-                title: Text('Are you sure you want to sign out?'),
-                content: Text('If you sign out, any information not saved will be lost.'),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text('Cancel'),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  FlatButton(
-                    child: Text(
-                      'Sign Out',
-                      style: TextStyle(
-                          color: Colors.red.shade700
-                      ),
-                    ),
-                    onPressed: () {
-                      googleSignIn.disconnect().then((_) => Navigator.popUntil(context, (route) => route.isFirst));
-                    },
-                  ),
-                ],
-              ),
+              title: 'Are you sure you want to sign out?',
+              message: 'If you sign out, any information not saved will be lost.',
+              actions: <Widget>[
+                AlertButton(
+                  'Cancel',
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                AlertButton(
+                  'Sign Out',
+                  textColor: Colors.red.shade700,
+                  onPressed: () {
+                    googleSignIn.disconnect().then((_) => Navigator.popUntil(context, (route) => route.isFirst));
+                  },
+                ),
+              ]
             );
           },
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'profile_info_page.dart';
+import 'alert.dart';
 import 'globals.dart';
 
 class SignInPage extends StatefulWidget {
@@ -19,20 +20,18 @@ class _SignInPageState extends State<SignInPage> {
         MaterialPageRoute(builder: (context) => ProfileInfoPage()),
       );
     } else {
-      showDialog(
+      alert(
         context: context,
-        builder: (_) => AlertDialog(
-          title: Text('Error!'),
-          content: Text('Unfortunately, this account does not have access to the signups spreadsheet. Please sign in with a different account or contact $accessEmail to get access.'),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('OK'),
-              onPressed: () {
-                googleSignIn.disconnect().then((_) => Navigator.pop(context));
-              },
-            )
-          ],
-        ),
+        title: 'Error!',
+        message: 'Unfortunately, this account does not have access to the signups spreadsheet. Please sign in with a different account or contact $accessEmail to get access.',
+        actions: <Widget>[
+          AlertButton(
+            'OK',
+            onPressed: () {
+              googleSignIn.disconnect().then((_) => Navigator.pop(context));
+            },
+          )
+        ],
       );
     }
   }
