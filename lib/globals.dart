@@ -4,3 +4,5 @@ final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['https://www.googleapis.
 
 const String sheetId = '1QAzPiIC-C6yrLt_50GGB5czH60mFEXIZt9yPSJIKQao';
 const String accessEmail = 'ashish.warty@gmail.com';
+
+const Map<String, String> sheetRow = {};
