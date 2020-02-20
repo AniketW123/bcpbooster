@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'swag_page.dart';
 import '../globals.dart';
 import '../util/inputs.dart';
 
@@ -25,23 +26,21 @@ class _MembershipPageState extends State<MembershipPage> {
 
     List<Widget> list = [];
     for (int i = 0; i < titles.length; i++) {
-      LabeledInput radio = LabeledInput(
-        title: titles[i],
-        noPadding: true,
-        input: Radio(
-          value: values[i],
-          groupValue: _radioInputs[name],
-          onChanged: (val) {
-            setState(() {
-              _radioInputs[name] = val;
-            });
-          },
-        ),
-      );
-
-      list.add(column ? radio : Padding(
+      list.add(Padding(
         padding: EdgeInsets.only(left: 20.0),
-        child: radio,
+        child: LabeledInput(
+          title: titles[i],
+          noPadding: true,
+          input: Radio(
+            value: values[i],
+            groupValue: _radioInputs[name],
+            onChanged: (val) {
+              setState(() {
+                _radioInputs[name] = val;
+              });
+            },
+          ),
+        ),
       ));
     }
 
@@ -107,15 +106,16 @@ class _MembershipPageState extends State<MembershipPage> {
             RaisedButton(
               child: Text('Next'),
               onPressed: () {
+                sheetRow['isNewMember'] = _isNewMember ? 'YES' : 'NO';
                 for (String input in _radioInputs.keys) {
                   sheetRow[input] = _radioInputs[input];
                 }
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(builder: (context) => MembershipPage()),
-//                );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SwagPage()),
+                );
               },
-            )
+            ),
           ],
         ),
       ),
