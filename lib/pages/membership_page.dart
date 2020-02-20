@@ -106,10 +106,11 @@ class _MembershipPageState extends State<MembershipPage> {
             RaisedButton(
               child: Text('Next'),
               onPressed: () {
-                sheetRow['isNewMember'] = _isNewMember ? 'YES' : 'NO';
-                for (String input in _radioInputs.keys) {
-                  sheetRow[input] = _radioInputs[input];
-                }
+                sheetRow.isNewMember = _isNewMember;
+                sheetRow.membershipType = _radioInputs['membershipType'];
+                sheetRow.jacketStyle = _radioInputs['jacketStyle'];
+                sheetRow.jacketSize = _radioInputs['jacketSize'];
+                sheetRow.sportsFormat = _radioInputs['sportsFormat'];
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SwagPage()),

@@ -1,3 +1,4 @@
+import 'package:booster_signups/sheet_row.dart';
 import 'package:flutter/material.dart';
 import '../globals.dart';
 import '../util/inputs.dart';
@@ -58,9 +59,10 @@ class _SwagPageState extends State<SwagPage> {
             RaisedButton(
               child: Text('Done'),
               onPressed: () {
-                sheetRow['capPickedUp'] = _capPickedUp ? 'YES' : 'NO';
-                sheetRow['jacketPickedUp'] = _jacketPickedUp ? 'YES' : 'NO';
-                sheetRow['paymentConfirmed'] = _paymentConfirmed ? 'YES' : 'NO';
+                sheetRow.capPickedUp = _capPickedUp;
+                sheetRow.jacketPickedUp = _jacketPickedUp;
+                sheetRow.paymentConfirmed = _paymentConfirmed;
+                sheetRow = SheetRow();
               },
             ),
           ],

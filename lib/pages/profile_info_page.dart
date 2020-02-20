@@ -1,7 +1,8 @@
+import 'package:booster_signups/sheet_row.dart';
 import 'package:flutter/material.dart';
 import 'membership_page.dart';
-import '../util/alert.dart';
 import '../globals.dart';
+import '../util/alert.dart';
 
 class ProfileInfoPage extends StatefulWidget {
   @override
@@ -48,6 +49,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                   'Sign Out',
                   textColor: Colors.red.shade700,
                   onPressed: () {
+                    sheetRow = SheetRow();
                     googleSignIn.disconnect().then((_) => Navigator.popUntil(context, (route) => route.isFirst));
                   },
                 ),
@@ -114,9 +116,14 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                 child: Text('Next'),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    for (String controller in _controllers.keys) {
-                      sheetRow[controller] = _controllers[controller].text;
-                    }
+                    sheetRow.firstName = _controllers['firstName'].text;
+                    sheetRow.lastName = _controllers['lastName'].text;
+                    sheetRow.email = _controllers['email'].text;
+                    sheetRow.phoneNum = _controllers['phoneNum'].text;
+                    sheetRow.address = _controllers['address'].text;
+                    sheetRow.city = _controllers['city'].text;
+                    sheetRow.state = _controllers['state'].text;
+                    sheetRow.zip = _controllers['zip'].text;
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MembershipPage()),
