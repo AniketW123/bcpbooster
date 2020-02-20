@@ -1,6 +1,9 @@
-import 'package:booster_signups/sheet_row.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../globals.dart';
+import '../sheet_row.dart';
+import '../util/alert.dart';
 import '../util/inputs.dart';
 
 class SwagPage extends StatefulWidget {
@@ -12,6 +15,35 @@ class _SwagPageState extends State<SwagPage> {
   bool _capPickedUp = false;
   bool _jacketPickedUp = false;
   bool _paymentConfirmed = false;
+
+  void _submit() async {
+    http.Response res = await http.post(
+      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/A1:R1:append?valueInputOption=USER_ENTERED',
+      headers: await googleSignIn.currentUser.authHeaders,
+      body: jsonEncode({
+        'majorDimension': 'ROWS',
+        'range': 'A1:R1',
+        'values': [sheetRow.getList()]
+      }),
+    );
+
+    print(res.body);
+    if (res.statusCode == 200) {
+      alert(
+        context: context,
+        title: 'Done!',
+        message: 'Response recorded for ${sheetRow.firstName} ${sheetRow.lastName}.',
+        actions: <Widget>[
+          AlertButton(
+            'OK',
+            onPressed: () {
+              sheetRow = SheetRow();
+            },
+          )
+        ],
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +94,8 @@ class _SwagPageState extends State<SwagPage> {
                 sheetRow.capPickedUp = _capPickedUp;
                 sheetRow.jacketPickedUp = _jacketPickedUp;
                 sheetRow.paymentConfirmed = _paymentConfirmed;
-                sheetRow = SheetRow();
+
+                _submit();
               },
             ),
           ],
