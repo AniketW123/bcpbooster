@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'profile_info_page.dart';
+import 'globals.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -9,9 +11,43 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['https://www.googleapis.com/auth/spreadsheets']
-  );
+  void _getSheet() async {
+    http.Response res = await http.get('https://sheets.googleapis.com/v4/spreadsheets/$sheetId', headers: await googleSignIn.currentUser.authHeaders,);
+    if (res.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileInfoPage()),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Error!'),
+          content: Text('Unfortunately, this account does not have access to the signups spreadsheet. Please sign in with a different account or contact $accessEmail to get access.'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                googleSignIn.disconnect().then((_) => Navigator.pop(context));
+              },
+            )
+          ],
+        )
+      );
+    }
+  }
+
+  void _handleSilentSignIn(GoogleSignInAccount account) {
+    if (account != null) {
+      _getSheet();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    googleSignIn.signInSilently().then(_handleSilentSignIn);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +70,11 @@ class _SignInPageState extends State<SignInPage> {
             SignInButton(
               Buttons.Google,
               onPressed: () {
-                print('sign in');
+                googleSignIn.signIn().then((_) => _getSheet());
               },
             ),
           ],
-        )
+        ),
     );
   }
 }
