@@ -23,6 +23,17 @@ final Map<String, TextEditingController> _controllers = {
 class _ProfileInfoPageState extends State<ProfileInfoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  void _update() {
+    sheetRow.firstName = _controllers['firstName'].text;
+    sheetRow.lastName = _controllers['lastName'].text;
+    sheetRow.email = _controllers['email'].text;
+    sheetRow.phoneNum = _controllers['phoneNum'].text;
+    sheetRow.address = _controllers['address'].text;
+    sheetRow.city = _controllers['city'].text;
+    sheetRow.state = _controllers['state'].text;
+    sheetRow.zip = _controllers['zip'].text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,14 +127,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                 child: Text('Next'),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    sheetRow.firstName = _controllers['firstName'].text;
-                    sheetRow.lastName = _controllers['lastName'].text;
-                    sheetRow.email = _controllers['email'].text;
-                    sheetRow.phoneNum = _controllers['phoneNum'].text;
-                    sheetRow.address = _controllers['address'].text;
-                    sheetRow.city = _controllers['city'].text;
-                    sheetRow.state = _controllers['state'].text;
-                    sheetRow.zip = _controllers['zip'].text;
+                    _update();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MembershipPage()),

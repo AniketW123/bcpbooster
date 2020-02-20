@@ -12,9 +12,15 @@ class SwagPage extends StatefulWidget {
 }
 
 class _SwagPageState extends State<SwagPage> {
-  bool _capPickedUp = false;
-  bool _jacketPickedUp = false;
-  bool _paymentConfirmed = false;
+  bool _capPickedUp = sheetRow.capPickedUp;
+  bool _jacketPickedUp = sheetRow.jacketPickedUp;
+  bool _paymentConfirmed = sheetRow.paymentConfirmed;
+
+  void _update() {
+    sheetRow.capPickedUp = _capPickedUp;
+    sheetRow.jacketPickedUp = _jacketPickedUp;
+    sheetRow.paymentConfirmed = _paymentConfirmed;
+  }
 
   void _submit() async {
     http.Response res = await http.post(
@@ -91,10 +97,7 @@ class _SwagPageState extends State<SwagPage> {
             RaisedButton(
               child: Text('Done'),
               onPressed: () {
-                sheetRow.capPickedUp = _capPickedUp;
-                sheetRow.jacketPickedUp = _jacketPickedUp;
-                sheetRow.paymentConfirmed = _paymentConfirmed;
-
+                _update();
                 _submit();
               },
             ),
@@ -102,5 +105,11 @@ class _SwagPageState extends State<SwagPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _update();
   }
 }

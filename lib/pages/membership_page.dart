@@ -10,12 +10,20 @@ class MembershipPage extends StatefulWidget {
 
 class _MembershipPageState extends State<MembershipPage> {
   bool _isNewMember = true;
-  final Map<String, String> _radioInputs = {
-    'membershipType': 'Premium 4 Year',
-    'jacketStyle': 'Male',
-    'jacketSize': 'L',
-    'sportsFormat': 'Digital',
+  Map<String, String> _radioInputs = {
+    'membershipType': sheetRow.membershipType,
+    'jacketStyle': sheetRow.jacketStyle,
+    'jacketSize': sheetRow.jacketSize,
+    'sportsFormat': sheetRow.sportsFormat,
   };
+
+  void _update() {
+    sheetRow.isNewMember = _isNewMember;
+    sheetRow.membershipType = _radioInputs['membershipType'];
+    sheetRow.jacketStyle = _radioInputs['jacketStyle'];
+    sheetRow.jacketSize = _radioInputs['jacketSize'];
+    sheetRow.sportsFormat = _radioInputs['sportsFormat'];
+  }
 
   Widget _radioGroup({List<String> titles, @required List<String> values, @required String name, bool column = false}) {
     if (titles == null) {
@@ -106,11 +114,7 @@ class _MembershipPageState extends State<MembershipPage> {
             RaisedButton(
               child: Text('Next'),
               onPressed: () {
-                sheetRow.isNewMember = _isNewMember;
-                sheetRow.membershipType = _radioInputs['membershipType'];
-                sheetRow.jacketStyle = _radioInputs['jacketStyle'];
-                sheetRow.jacketSize = _radioInputs['jacketSize'];
-                sheetRow.sportsFormat = _radioInputs['sportsFormat'];
+                _update();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SwagPage()),
@@ -121,5 +125,11 @@ class _MembershipPageState extends State<MembershipPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _update();
   }
 }
