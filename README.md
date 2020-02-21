@@ -1,3 +1,3 @@
-# booster_signups
+# Bellarmine Booster Club Signups
 
-An app to log signups for Bellarmine College Prep&#x27;s Booster Club
+A flutter app to log signups for Bellarmine College Prep&#x27;s Booster Club.
