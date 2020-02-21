@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'profile_info_page.dart';
 import '../util/alert.dart';
 import '../globals.dart';
@@ -12,11 +13,17 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool _loading = false;
+
   void _getSheet() async {
+    setState(() => _loading = true);
+
     http.Response res = await http.get(
       'https://sheets.googleapis.com/v4/spreadsheets/$sheetId',
       headers: await googleSignIn.currentUser.authHeaders,
     );
+
+    setState(() => _loading = false);
 
     if (res.statusCode == 200) {
       Navigator.push(
@@ -59,25 +66,28 @@ class _SignInPageState extends State<SignInPage> {
       appBar: AppBar(
         title: Text('Sign In'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Text(
-            'Bellarmine Booster Club Signups',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 72.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'Avenir Next',
+      body: ModalProgressHUD(
+        inAsyncCall: _loading,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Text(
+              'Bellarmine Booster Club Signups',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 72.0,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Avenir Next',
+              ),
             ),
-          ),
-          SignInButton(
-            Buttons.Google,
-            onPressed: () {
-              googleSignIn.signIn().then((_) => _getSheet());
-            },
-          ),
-        ],
+            SignInButton(
+              Buttons.Google,
+              onPressed: () {
+                googleSignIn.signIn().then((_) => _getSheet());
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
