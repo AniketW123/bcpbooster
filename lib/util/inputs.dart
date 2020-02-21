@@ -17,7 +17,13 @@ class LabeledInput extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(title),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: noPadding ? FontWeight.w400 : FontWeight.w600
+              ),
+            ),
           ),
           input
         ],

@@ -21,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
     if (res.statusCode == 200) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ProfileInfoPage(), settings: RouteSettings(name: formRoot),),
+        MaterialPageRoute(builder: (context) => ProfileInfoPage()),
       );
     } else {
       alert(
@@ -41,6 +41,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _silentSignIn(GoogleSignInAccount account) {
+    print(account);
     if (account != null) {
       _getSheet();
     }
@@ -55,29 +56,29 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Sign In'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              'Bellarmine Booster Club Signups',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 72.0,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Avenir Next',
-              ),
+      appBar: AppBar(
+        title: Text('Sign In'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text(
+            'Bellarmine Booster Club Signups',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 72.0,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Avenir Next',
             ),
-            SignInButton(
-              Buttons.Google,
-              onPressed: () {
-                googleSignIn.signIn().then((_) => _getSheet());
-              },
-            ),
-          ],
-        ),
+          ),
+          SignInButton(
+            Buttons.Google,
+            onPressed: () {
+              googleSignIn.signIn().then((_) => _getSheet());
+            },
+          ),
+        ],
+      ),
     );
   }
 }

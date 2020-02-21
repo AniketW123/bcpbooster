@@ -5,6 +5,7 @@ import '../globals.dart';
 import '../sheet_row.dart';
 import '../util/alert.dart';
 import '../util/inputs.dart';
+import 'profile_info_page.dart';
 
 class SwagPage extends StatefulWidget {
   @override
@@ -43,7 +44,10 @@ class _SwagPageState extends State<SwagPage> {
             'OK',
             onPressed: () {
               sheetRow = SheetRow();
-              Navigator.popUntil(context, (route) => route.settings.name == formRoot);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileInfoPage())
+              );
             },
           )
         ],

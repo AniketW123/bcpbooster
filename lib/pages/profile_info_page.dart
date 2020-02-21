@@ -9,30 +9,8 @@ class ProfileInfoPage extends StatefulWidget {
   _ProfileInfoPageState createState() => _ProfileInfoPageState();
 }
 
-final Map<String, TextEditingController> _controllers = {
-  'firstName': TextEditingController(),
-  'lastName': TextEditingController(),
-  'email': TextEditingController(),
-  'phoneNum': TextEditingController(),
-  'address': TextEditingController(),
-  'city': TextEditingController(),
-  'state': TextEditingController(),
-  'zip': TextEditingController(),
-};
-
 class _ProfileInfoPageState extends State<ProfileInfoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void _update() {
-    sheetRow.firstName = _controllers['firstName'].text;
-    sheetRow.lastName = _controllers['lastName'].text;
-    sheetRow.email = _controllers['email'].text;
-    sheetRow.phoneNum = _controllers['phoneNum'].text;
-    sheetRow.address = _controllers['address'].text;
-    sheetRow.city = _controllers['city'].text;
-    sheetRow.state = _controllers['state'].text;
-    sheetRow.zip = _controllers['zip'].text;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,73 +47,99 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              _FormField(
-                label: 'First name',
-                controller: 'firstName',
-              ),
-              _FormField(
-                label: 'Last name',
-                controller: 'lastName',
-              ),
-              _FormField(
-                label: 'Email',
-                controller: 'email',
-                keyboardType: TextInputType.emailAddress,
-              ),
-              _FormField(
-                label: 'Phone number',
-                controller: 'phoneNum',
-                keyboardType: TextInputType.phone,
-              ),
-              _FormField(
-                label: 'Address',
-                controller: 'address',
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: _FormField(
-                      label: 'City',
-                      controller: 'city',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                _FormField(
+                  label: 'First name',
+                  initialValue: sheetRow.firstName,
+                  onChanged: (val) {
+                    sheetRow.firstName = val;
+                  },
+                ),
+                _FormField(
+                  label: 'Last name',
+                  initialValue: sheetRow.lastName,
+                  onChanged: (val) {
+                    sheetRow.lastName = val;
+                  },
+                ),
+                _FormField(
+                  label: 'Email',
+                  initialValue: sheetRow.email,
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (val) {
+                    sheetRow.email = val;
+                  },
+                ),
+                _FormField(
+                  label: 'Phone number',
+                  initialValue: sheetRow.phoneNum,
+                  keyboardType: TextInputType.phone,
+                  onChanged: (val) {
+                    sheetRow.phoneNum = val;
+                  },
+                ),
+                _FormField(
+                  label: 'Address',
+                  initialValue: sheetRow.address,
+                  onChanged: (val) {
+                    sheetRow.address = val;
+                  },
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 4,
+                      child: _FormField(
+                        label: 'City',
+                        initialValue: sheetRow.city,
+                        onChanged: (val) {
+                          sheetRow.city = val;
+                        },
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: _FormField(
-                      label: 'State',
-                      controller: 'state',
+                    Expanded(
+                      flex: 2,
+                      child: _FormField(
+                        label: 'State',
+                        initialValue: sheetRow.state,
+                        onChanged: (val) {
+                          sheetRow.state = val;
+                        },
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: _FormField(
-                      label: 'Zip code',
-                      controller: 'zip',
-                      keyboardType: TextInputType.number,
-                    ),
-                  )
-                ],
-              ),
-              RaisedButton(
-                child: Text('Next'),
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    _update();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MembershipPage()),
-                    );
-                  }
-                },
-              ),
-            ],
+                    Expanded(
+                      flex: 3,
+                      child: _FormField(
+                        label: 'Zip code',
+                        initialValue: sheetRow.zip,
+                        keyboardType: TextInputType.number,
+                        onChanged: (val) {
+                          sheetRow.zip = val;
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                RaisedButton(
+                  child: Text('Next'),
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MembershipPage()),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -145,17 +149,19 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
 
 class _FormField extends StatelessWidget {
   final String label;
-  final String controller;
+  final String initialValue;
+  final ValueChanged<String> onChanged;
   final TextInputType keyboardType;
 
-  _FormField({@required this.label, @required this.controller, this.keyboardType = TextInputType.text});
+  _FormField({@required this.label, @required this.initialValue, @required this.onChanged, this.keyboardType = TextInputType.text});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: TextFormField(
-        controller: _controllers[controller],
+        initialValue: initialValue,
+        onChanged: onChanged,
         keyboardType: keyboardType,
         validator: (value) {
           if (value.isEmpty) {
