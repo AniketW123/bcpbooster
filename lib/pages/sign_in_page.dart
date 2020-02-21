@@ -48,7 +48,6 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   void _silentSignIn(GoogleSignInAccount account) {
-    print(account);
     if (account != null) {
       _getSheet();
     }
@@ -56,8 +55,8 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void initState() {
-    super.initState();
     googleSignIn.signInSilently().then(_silentSignIn);
+    super.initState();
   }
 
   @override
