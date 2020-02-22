@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../globals.dart';
 
 class LabeledInput extends StatelessWidget {
   final String title;
@@ -49,7 +50,7 @@ class SubmitButton extends StatelessWidget {
             fontSize: 28.0,
           ),
         ),
-        color: Color(0xFF2C3872), // Hex: 2C3872
+        color: primaryColor, // Hex: 2C3872
         textColor: Colors.white,
         padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
         shape: RoundedRectangleBorder(

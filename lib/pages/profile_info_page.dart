@@ -1,7 +1,6 @@
 import 'package:booster_signups/sheet_row.dart';
 import 'package:booster_signups/util/inputs.dart';
 import 'package:flutter/material.dart';
-import 'membership_page.dart';
 import '../globals.dart';
 import '../util/alert.dart';
 
@@ -131,10 +130,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                 SubmitButton(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MembershipPage()),
-                      );
+                      Navigator.pushNamed(context, '/membership');
                     }
                   },
                 ),
@@ -163,6 +159,7 @@ class _FormField extends StatelessWidget {
         initialValue: initialValue,
         onChanged: onChanged,
         keyboardType: keyboardType,
+        cursorColor: primaryColor,
         validator: (value) {
           if (value.isEmpty) {
             return 'Please enter some text';

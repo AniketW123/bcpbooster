@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
 import 'pages/sign_in_page.dart';
+import 'pages/profile_info_page.dart';
+import 'pages/membership_page.dart';
+import 'pages/swag_page.dart';
 
 void main() => runApp(App());
 
@@ -8,11 +12,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(0xFF2C3872), // Hex: 2C3872
-        scaffoldBackgroundColor: Color(0xFFABBAF2), // Hex: ABBAF2
+        primaryColor: primaryColor, // Hex: 2C3872
+        scaffoldBackgroundColor: backgroundColor, // Hex: ABBAF2
         fontFamily: 'Avenir Next'
       ),
-      home: SignInPage()
+      routes: {
+        '/sign_in': (_) => SignInPage(),
+        '/profile_info': (_) => ProfileInfoPage(),
+        '/membership': (_) => MembershipPage(),
+        '/swag': (_) => SwagPage(),
+      },
+      initialRoute: '/sign_in',
     );
   }
 }

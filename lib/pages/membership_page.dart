@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'swag_page.dart';
 import '../globals.dart';
 import '../util/inputs.dart';
 
@@ -114,10 +113,7 @@ class _MembershipPageState extends State<MembershipPage> {
             SubmitButton(
               onPressed: () {
                 _update();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SwagPage()),
-                );
+                Navigator.pushNamed(context, '/swag');
               },
             ),
           ],

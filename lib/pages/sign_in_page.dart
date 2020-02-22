@@ -3,7 +3,6 @@ import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'profile_info_page.dart';
 import '../util/alert.dart';
 import '../globals.dart';
 
@@ -26,10 +25,7 @@ class _SignInPageState extends State<SignInPage> {
     setState(() => _loading = false);
 
     if (res.statusCode == 200) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileInfoPage()),
-      );
+      Navigator.pushNamed(context, '/profile_info');
     } else {
       alert(
         context: context,

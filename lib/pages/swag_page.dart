@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'profile_info_page.dart';
 import '../globals.dart';
 import '../sheet_row.dart';
 import '../util/alert.dart';
@@ -51,10 +50,7 @@ class _SwagPageState extends State<SwagPage> {
             'OK',
             onPressed: () {
               sheetRow = SheetRow();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfileInfoPage())
-              );
+              Navigator.pushNamed(context, '/profile_info');
             },
           )
         ],
