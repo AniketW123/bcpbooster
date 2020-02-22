@@ -10,6 +10,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFF2C3872), // Hex: 2C3872
         scaffoldBackgroundColor: Color(0xFFABBAF2), // Hex: ABBAF2
+        fontFamily: 'Avenir Next'
       ),
       home: SignInPage()
     );

@@ -79,7 +79,6 @@ class _SignInPageState extends State<SignInPage> {
               style: TextStyle(
                 fontSize: 72.0,
                 fontWeight: FontWeight.w600,
-                fontFamily: 'Avenir Next',
               ),
             ),
             Transform.scale(

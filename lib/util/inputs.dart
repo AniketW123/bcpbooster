@@ -31,3 +31,33 @@ class LabeledInput extends StatelessWidget {
     );
   }
 }
+
+class SubmitButton extends StatelessWidget {
+  final String title;
+  final VoidCallback onPressed;
+
+  SubmitButton({this.title = 'Next', @required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 20.0),
+      child: RaisedButton(
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 28.0,
+          ),
+        ),
+        color: Color(0xFF2C3872), // Hex: 2C3872
+        textColor: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+

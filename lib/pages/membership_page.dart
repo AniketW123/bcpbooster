@@ -111,8 +111,7 @@ class _MembershipPageState extends State<MembershipPage> {
                 values: ['Digital', 'Printed']
               ),
             ),
-            RaisedButton(
-              child: Text('Next'),
+            SubmitButton(
               onPressed: () {
                 _update();
                 Navigator.push(

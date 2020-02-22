@@ -1,4 +1,5 @@
 import 'package:booster_signups/sheet_row.dart';
+import 'package:booster_signups/util/inputs.dart';
 import 'package:flutter/material.dart';
 import 'membership_page.dart';
 import '../globals.dart';
@@ -17,8 +18,8 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile Info'),
-        leading: FlatButton(
-          child: Icon(
+        leading: IconButton(
+          icon: Icon(
             Icons.exit_to_app,
             color: Colors.white,
           ),
@@ -127,8 +128,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                     )
                   ],
                 ),
-                RaisedButton(
-                  child: Text('Next'),
+                SubmitButton(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       Navigator.push(
@@ -169,8 +169,10 @@ class _FormField extends StatelessWidget {
           }
           return null;
         },
+        style: TextStyle(
+          fontSize: 18.0,
+        ),
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
           labelText: label,
         ),
       ),
