@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'globals.dart';
+import 'constants.dart';
 import 'pages/sign_in_page.dart';
 import 'pages/profile_info_page.dart';
 import 'pages/membership_page.dart';

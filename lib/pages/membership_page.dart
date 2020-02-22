@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../globals.dart';
+import '../constants.dart';
 import '../util/inputs.dart';
 
 class MembershipPage extends StatefulWidget {

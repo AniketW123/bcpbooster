@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../globals.dart';
+import '../constants.dart';
 
 class LabeledInput extends StatelessWidget {
   final String title;

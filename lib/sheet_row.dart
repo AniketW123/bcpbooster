@@ -1,5 +1,5 @@
 import 'package:date_format/date_format.dart';
-import 'globals.dart';
+import 'constants.dart';
 
 class SheetRow {
   // Profile Info

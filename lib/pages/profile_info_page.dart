@@ -1,7 +1,7 @@
 import 'package:booster_signups/sheet_row.dart';
 import 'package:booster_signups/util/inputs.dart';
 import 'package:flutter/material.dart';
-import '../globals.dart';
+import '../constants.dart';
 import '../util/alert.dart';
 
 class ProfileInfoPage extends StatefulWidget {
