@@ -76,13 +76,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_signin_button:
+  flutter_auth_buttons:
     dependency: "direct main"
     description:
-      name: flutter_signin_button
+      name: flutter_auth_buttons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.6.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -93,13 +93,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  font_awesome_flutter:
-    dependency: transitive
-    description:
-      name: font_awesome_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.7.0"
   google_sign_in:
     dependency: "direct main"
     description:

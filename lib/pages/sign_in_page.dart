@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -79,12 +79,15 @@ class _SignInPageState extends State<SignInPage> {
                 fontFamily: 'Avenir Next',
               ),
             ),
-            SignInButton(
-              Buttons.Google,
-              onPressed: () {
-                googleSignIn.signIn().then((_) => _getSheet());
-              },
+            Transform.scale(
+              scale: 1.25,
+              child: GoogleSignInButton(
+                onPressed: () {
+                  googleSignIn.signIn().then((_) => _getSheet());
+                },
+              ),
             ),
+            SizedBox()
           ],
         ),
       ),
