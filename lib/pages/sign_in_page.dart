@@ -47,15 +47,18 @@ class _SignInPageState extends State<SignInPage> {
     }
   }
 
-  void _silentSignIn(GoogleSignInAccount account) {
+  void _userChanged(GoogleSignInAccount account) {
     if (account != null) {
       _getSheet();
+    } else {
+      Navigator.popUntil(context, (route) => route.isFirst);
     }
   }
 
   @override
   void initState() {
-    googleSignIn.signInSilently().then(_silentSignIn);
+    googleSignIn.onCurrentUserChanged.listen(_userChanged);
+    googleSignIn.signInSilently();
     super.initState();
   }
 
@@ -83,7 +86,7 @@ class _SignInPageState extends State<SignInPage> {
               scale: 1.25,
               child: GoogleSignInButton(
                 onPressed: () {
-                  googleSignIn.signIn().then((_) => _getSheet());
+                  googleSignIn.signIn();
                 },
               ),
             ),

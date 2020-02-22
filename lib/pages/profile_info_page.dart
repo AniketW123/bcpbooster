@@ -39,7 +39,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                   textColor: Colors.red.shade700,
                   onPressed: () {
                     sheetRow = SheetRow();
-                    googleSignIn.disconnect().then((_) => Navigator.popUntil(context, (route) => route.isFirst));
+                    googleSignIn.disconnect();
                   },
                 ),
               ],
