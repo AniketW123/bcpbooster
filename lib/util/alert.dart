@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void alert({@required BuildContext context, @required String title, String message, List<Widget> actions}) {
   showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (_) => AlertDialog(
         title: Text(title),
         content: Text(message),
