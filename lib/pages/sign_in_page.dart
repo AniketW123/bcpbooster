@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import './page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
 
@@ -11,18 +11,16 @@ class SignInPage extends StatefulWidget {
   _SignInPageState createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  bool _loading = false;
-
+class _SignInPageState extends PageState<SignInPage> {
   void _getSheet() async {
-    setState(() => _loading = true);
+    startLoading();
 
     http.Response res = await http.get(
       'https://sheets.googleapis.com/v4/spreadsheets/$sheetId',
       headers: await googleSignIn.currentUser.authHeaders,
     );
 
-    setState(() => _loading = false);
+    stopLoading();
 
     if (res.statusCode == 200) {
       Navigator.pushNamed(context, '/profile_info');
@@ -59,36 +57,38 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In'),
-      ),
-      body: ModalProgressHUD(
-        inAsyncCall: _loading,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              'Bellarmine Booster Club Signups',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 72.0,
-                fontWeight: FontWeight.w600,
-              ),
+  PreferredSizeWidget buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text('Sign In'),
+    );
+  }
+
+  @override
+  Widget buildBody(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 150.0),
+          child: Text(
+            'Bellarmine Booster Club Signups',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 72.0,
+              fontWeight: FontWeight.w600,
             ),
-            Transform.scale(
-              scale: 1.25,
-              child: GoogleSignInButton(
-                onPressed: () {
-                  googleSignIn.signIn();
-                },
-              ),
-            ),
-            SizedBox()
-          ],
+          ),
         ),
-      ),
+        Transform.scale(
+          scale: 1.25,
+          child: GoogleSignInButton(
+            onPressed: () {
+              googleSignIn.signIn();
+            },
+          ),
+        ),
+        SizedBox(),
+      ],
     );
   }
 }
