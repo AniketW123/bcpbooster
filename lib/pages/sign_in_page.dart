@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
-import './page.dart';
+import 'page.dart';
+import 'util/alert.dart';
 import '../constants.dart';
-import '../util/alert.dart';
 
 class SignInPage extends StatefulWidget {
   @override

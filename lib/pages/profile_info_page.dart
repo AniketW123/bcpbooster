@@ -1,9 +1,10 @@
 import 'package:booster_signups/sheet_row.dart';
-import 'package:booster_signups/util/inputs.dart';
 import 'package:flutter/material.dart';
-import './page.dart';
+import 'page.dart';
+import 'util/alert.dart';
+import 'util/inputs.dart';
 import '../constants.dart';
-import '../util/alert.dart';
+
 
 class ProfileInfoPage extends StatefulWidget {
   @override
