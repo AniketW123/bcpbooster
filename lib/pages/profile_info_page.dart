@@ -7,24 +7,11 @@ import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
-const TextStyle _textFieldStyle = TextStyle(
-  fontFamily: 'Avenir Next',
-  fontSize: 18.0,
-  color: Colors.black,
-);
-
 const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
                              'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
                              'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
                              'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
                              'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
-
-String _validator(String val) {
-  if (val.length == 0) {
-    return 'Must contain text.';
-  }
-  return null;
-}
 
 class ProfileInfoPage extends StatefulWidget {
   @override
@@ -35,6 +22,13 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _state = 'CA';
+
+  String _validator(String val) {
+    if (val.length == 0) {
+      return 'Must contain text.';
+    }
+    return null;
+  }
 
   @override
   void update() {
@@ -88,7 +82,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             FormPadding(
               child: TextFormField(
                 cursorColor: primaryColor,
-                style: _textFieldStyle,
+                style: inputStyle,
                 textCapitalization: TextCapitalization.words,
                 validator: _validator,
                 decoration: InputDecoration(
@@ -102,7 +96,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             FormPadding(
               child: TextFormField(
                 cursorColor: primaryColor,
-                style: _textFieldStyle,
+                style: inputStyle,
                 textCapitalization: TextCapitalization.words,
                 validator: _validator,
                 decoration: InputDecoration(
@@ -117,7 +111,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               child: TextFormField(
                 cursorColor: primaryColor,
                 keyboardType: TextInputType.emailAddress,
-                style: _textFieldStyle,
+                style: inputStyle,
                 validator: (val) => EmailValidator.validate(val, true) ? null : 'Not a valid email.',
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -141,7 +135,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             FormPadding(
               child: TextFormField(
                 cursorColor: primaryColor,
-                style: _textFieldStyle,
+                style: inputStyle,
                 textCapitalization: TextCapitalization.words,
                 validator: _validator,
                 decoration: InputDecoration(
@@ -159,7 +153,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   flex: 4,
                   child: TextFormField(
                     cursorColor: primaryColor,
-                    style: _textFieldStyle,
+                    style: inputStyle,
                     textCapitalization: TextCapitalization.words,
                     validator: _validator,
                     decoration: InputDecoration(
@@ -183,7 +177,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                         child: Text(e),
                       )).toList(),
                       isExpanded: true,
-                      style: _textFieldStyle,
+                      style: inputStyle,
                       underline: Container(
                         height: 1,
                         color: Colors.black45,
@@ -241,33 +235,6 @@ class FormPadding extends StatelessWidget {
     return flex == null ? padding : Expanded(
       flex: flex,
       child: padding,
-    );
-  }
-}
-
-class NumberTextField extends StatelessWidget {
-  final InputDecoration decoration;
-  final int maxLength;
-  final void Function(String) onChanged;
-
-  NumberTextField({this.decoration, this.maxLength, @required this.onChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: primaryColor,
-      style: _textFieldStyle,
-      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-      keyboardType: TextInputType.phone,
-      decoration: decoration,
-      maxLength: maxLength,
-      onChanged: onChanged,
-      validator: (val) {
-        if (val.length < maxLength) {
-          return 'Must be $maxLength digits long.';
-        }
-        return null;
-      },
     );
   }
 }

@@ -29,7 +29,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
         padding: EdgeInsets.only(left: 20.0),
         child: LabeledInput(
           title: titles[i],
-          noPadding: true,
+          isChoice: true,
           input: Radio(
             value: values[i],
             groupValue: _radioInputs[name],
