@@ -16,13 +16,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
     'sportsFormat': sheetRow.sportsFormat,
   };
 
-  void _update() {
-    sheetRow.membershipType = _radioInputs['membershipType'];
-    sheetRow.jacketStyle = _radioInputs['jacketStyle'];
-    sheetRow.jacketSize = _radioInputs['jacketSize'];
-    sheetRow.sportsFormat = _radioInputs['sportsFormat'];
-  }
-
   Widget _radioGroup({List<String> titles, @required List<String> values, @required String name, bool column = false}) {
     if (titles == null) {
       titles = values;
@@ -56,6 +49,14 @@ class _MembershipPageState extends PageState<MembershipPage> {
     ) : Row(
       children: list,
     );
+  }
+
+  @override
+  void update() {
+    sheetRow.membershipType = _radioInputs['membershipType'];
+    sheetRow.jacketStyle = _radioInputs['jacketStyle'];
+    sheetRow.jacketSize = _radioInputs['jacketSize'];
+    sheetRow.sportsFormat = _radioInputs['sportsFormat'];
   }
 
   @override
@@ -103,18 +104,12 @@ class _MembershipPageState extends PageState<MembershipPage> {
           ),
           SubmitButton(
             onPressed: () {
-              _update();
+              update();
               Navigator.pushNamed(context, '/swag');
             },
           ),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _update();
   }
 }

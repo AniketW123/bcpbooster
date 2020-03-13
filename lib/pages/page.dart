@@ -4,10 +4,6 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 abstract class PageState<Page extends StatefulWidget> extends State<Page> {
   bool _loading = false;
 
-  PreferredSizeWidget buildAppBar(BuildContext context);
-
-  Widget buildBody(BuildContext context);
-
   void startLoading() {
     setState(() => _loading = true);
   }
@@ -15,6 +11,12 @@ abstract class PageState<Page extends StatefulWidget> extends State<Page> {
   void stopLoading() {
     setState(() => _loading = false);
   }
+
+  PreferredSizeWidget buildAppBar(BuildContext context);
+
+  Widget buildBody(BuildContext context);
+
+  void update() {}
 
   @override
   Widget build(BuildContext context) {
@@ -27,5 +29,11 @@ abstract class PageState<Page extends StatefulWidget> extends State<Page> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    update();
   }
 }

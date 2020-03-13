@@ -17,12 +17,6 @@ class _SwagPageState extends PageState<SwagPage> {
   bool _jacketPickedUp = sheetRow.jacketPickedUp;
   bool _paymentConfirmed = sheetRow.paymentConfirmed;
 
-  void _update() {
-    sheetRow.capPickedUp = _capPickedUp;
-    sheetRow.jacketPickedUp = _jacketPickedUp;
-    sheetRow.paymentConfirmed = _paymentConfirmed;
-  }
-
   void _submit() async {
     startLoading();
 
@@ -54,6 +48,13 @@ class _SwagPageState extends PageState<SwagPage> {
         ],
       );
     }
+  }
+
+  @override
+  void update() {
+    sheetRow.capPickedUp = _capPickedUp;
+    sheetRow.jacketPickedUp = _jacketPickedUp;
+    sheetRow.paymentConfirmed = _paymentConfirmed;
   }
 
   @override
@@ -105,18 +106,12 @@ class _SwagPageState extends PageState<SwagPage> {
           SubmitButton(
             title: 'Done',
             onPressed: () {
-              _update();
+              update();
               _submit();
             },
           ),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _update();
   }
 }
