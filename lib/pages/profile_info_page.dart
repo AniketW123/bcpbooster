@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'page.dart';
@@ -6,9 +7,14 @@ import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
-const TextStyle _textFieldStyle = TextStyle(
-  fontSize: 18.0,
-);
+const TextStyle _textFieldStyle = TextStyle(fontSize: 18.0);
+
+String _validator(String val) {
+  if (val.length == 0) {
+    return 'Must contain text.';
+  }
+  return null;
+}
 
 class ProfileInfoPage extends StatefulWidget {
   @override
@@ -67,6 +73,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 cursorColor: primaryColor,
                 style: _textFieldStyle,
                 textCapitalization: TextCapitalization.words,
+                validator: _validator,
                 decoration: InputDecoration(
                   labelText: 'First name',
                 ),
@@ -80,6 +87,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 cursorColor: primaryColor,
                 style: _textFieldStyle,
                 textCapitalization: TextCapitalization.words,
+                validator: _validator,
                 decoration: InputDecoration(
                   labelText: 'Last name',
                 ),
@@ -93,6 +101,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 cursorColor: primaryColor,
                 keyboardType: TextInputType.emailAddress,
                 style: _textFieldStyle,
+                validator: (val) => EmailValidator.validate(val, true) ? null : 'Not a valid email.',
                 decoration: InputDecoration(
                   labelText: 'Email',
                 ),
@@ -117,6 +126,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 cursorColor: primaryColor,
                 style: _textFieldStyle,
                 textCapitalization: TextCapitalization.words,
+                validator: _validator,
                 decoration: InputDecoration(
                   labelText: 'Address',
                 ),
@@ -134,6 +144,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                     cursorColor: primaryColor,
                     style: _textFieldStyle,
                     textCapitalization: TextCapitalization.words,
+                    validator: _validator,
                     decoration: InputDecoration(
                       labelText: 'City',
                     ),
@@ -147,6 +158,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   child: TextFormField(
                     cursorColor: primaryColor,
                     style: _textFieldStyle,
+                    validator: _validator,
                     decoration: InputDecoration(
                       labelText: 'State',
                     ),
@@ -221,6 +233,12 @@ class NumberTextField extends StatelessWidget {
       decoration: decoration,
       maxLength: maxLength,
       onChanged: onChanged,
+      validator: (val) {
+        if (val.length < maxLength) {
+          return 'Must be $maxLength digits long.';
+        }
+        return null;
+      },
     );
   }
 }
