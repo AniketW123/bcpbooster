@@ -1,6 +1,8 @@
 import 'package:date_format/date_format.dart';
 import 'constants.dart';
 
+SheetRow sheetRow = SheetRow();
+
 class SheetRow {
   // Profile Info
   String firstName = '';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
 import 'util/inputs.dart';
-import '../constants.dart';
+import '../sheet_row.dart';
 
 class MembershipPage extends StatefulWidget {
   @override
