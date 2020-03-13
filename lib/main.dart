@@ -3,7 +3,7 @@ import 'constants.dart';
 import 'pages/sign_in_page.dart';
 import 'pages/profile_info_page.dart';
 import 'pages/membership_page.dart';
-import 'pages/swag_page.dart';
+import 'pages/misc_page.dart';
 
 void main() => runApp(App());
 
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
         '/sign_in': (_) => SignInPage(),
         '/profile_info': (_) => ProfileInfoPage(),
         '/membership': (_) => MembershipPage(),
-        '/swag': (_) => SwagPage(),
+        '/misc': (_) => MiscPage(),
       },
       initialRoute: '/sign_in',
     );

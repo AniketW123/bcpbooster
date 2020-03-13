@@ -7,12 +7,12 @@ import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
-class SwagPage extends StatefulWidget {
+class MiscPage extends StatefulWidget {
   @override
-  _SwagPageState createState() => _SwagPageState();
+  _MiscPageState createState() => _MiscPageState();
 }
 
-class _SwagPageState extends PageState<SwagPage> {
+class _MiscPageState extends PageState<MiscPage> {
   bool _capPickedUp = sheetRow.capPickedUp;
   bool _jacketPickedUp = sheetRow.jacketPickedUp;
   bool _paymentConfirmed = sheetRow.paymentConfirmed;
@@ -60,7 +60,7 @@ class _SwagPageState extends PageState<SwagPage> {
   @override
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Payment and Swag'),
+      title: Text('Miscellaneous'),
     );
   }
 

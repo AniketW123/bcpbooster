@@ -105,7 +105,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
           SubmitButton(
             onPressed: () {
               update();
-              Navigator.pushNamed(context, '/swag');
+              Navigator.pushNamed(context, '/misc');
             },
           ),
         ],
