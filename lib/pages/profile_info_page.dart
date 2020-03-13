@@ -7,7 +7,17 @@ import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
-const TextStyle _textFieldStyle = TextStyle(fontSize: 18.0);
+const TextStyle _textFieldStyle = TextStyle(
+  fontFamily: 'Avenir Next',
+  fontSize: 18.0,
+  color: Colors.black,
+);
+
+const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+                             'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+                             'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+                             'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+                             'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
 String _validator(String val) {
   if (val.length == 0) {
@@ -23,6 +33,13 @@ class ProfileInfoPage extends StatefulWidget {
 
 class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _state = 'CA';
+
+  @override
+  void update() {
+    sheetRow.state = _state;
+  }
 
   @override
   PreferredSizeWidget buildAppBar(BuildContext context) {
@@ -155,17 +172,28 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 ),
                 FormPadding(
                   flex: 2,
-                  child: TextFormField(
-                    cursorColor: primaryColor,
-                    style: _textFieldStyle,
-                    validator: _validator,
-                    decoration: InputDecoration(
-                      labelText: 'State',
+                  child: Container(
+                    padding: EdgeInsets.only(top: 18.0),
+                    height: 75.0,
+                    child: DropdownButton(
+                      value: _state,
+                      icon: Icon(Icons.keyboard_arrow_down),
+                      items: _states.map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(e),
+                      )).toList(),
+                      isExpanded: true,
+                      style: _textFieldStyle,
+                      underline: Container(
+                        height: 1,
+                        color: Colors.black45,
+                      ),
+                      onChanged: (val) {
+                        setState(() {
+                          _state = val;
+                        });
+                      },
                     ),
-                    maxLength: 2,
-                    onChanged: (val) {
-                      sheetRow.state = val;
-                    },
                   ),
                 ),
                 FormPadding(
@@ -205,7 +233,7 @@ class FormPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Padding padding = Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       child: child,
     );
 
