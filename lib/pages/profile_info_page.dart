@@ -102,13 +102,11 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               ),
             ),
             FormPadding(
-              child: TextFormField(
-                cursorColor: primaryColor,
-                style: _textFieldStyle,
-                keyboardType: TextInputType.phone,
+              child: NumberTextField(
                 decoration: InputDecoration(
                   labelText: 'Phone Number',
                 ),
+                maxLength: 10,
                 onChanged: (val) {
                   sheetRow.phoneNum = val;
                 },
@@ -160,11 +158,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 ),
                 FormPadding(
                   flex: 3,
-                  child: TextFormField(
-                    cursorColor: primaryColor,
-                    style: _textFieldStyle,
-                    inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-                    keyboardType: TextInputType.number,
+                  child: NumberTextField(
                     decoration: InputDecoration(
                       labelText: 'Zip Code',
                     ),
@@ -209,3 +203,25 @@ class FormPadding extends StatelessWidget {
     );
   }
 }
+
+class NumberTextField extends StatelessWidget {
+  final InputDecoration decoration;
+  final int maxLength;
+  final void Function(String) onChanged;
+
+  NumberTextField({this.decoration, this.maxLength, @required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      cursorColor: primaryColor,
+      style: _textFieldStyle,
+      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+      keyboardType: TextInputType.phone,
+      decoration: decoration,
+      maxLength: maxLength,
+      onChanged: onChanged,
+    );
+  }
+}
+
