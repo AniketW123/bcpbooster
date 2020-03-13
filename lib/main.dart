@@ -17,10 +17,10 @@ class App extends StatelessWidget {
         fontFamily: 'Avenir Next'
       ),
       routes: {
-        '/sign_in': (_) => SignInPage(),
-        '/profile_info': (_) => ProfileInfoPage(),
-        '/membership': (_) => MembershipPage(),
-        '/misc': (_) => MiscPage(),
+        SignInPage.path: (_) => SignInPage(),
+        ProfileInfoPage.path: (_) => ProfileInfoPage(),
+        MembershipPage.path: (_) => MembershipPage(),
+        MiscPage.path: (_) => MiscPage(),
       },
       initialRoute: '/sign_in',
     );

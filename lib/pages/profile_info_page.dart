@@ -6,14 +6,17 @@ import 'util/alert.dart';
 import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
+import './membership_page.dart';
 
 const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
-                             'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
-                             'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-                             'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
-                             'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
+                              'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+                              'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+                              'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+                              'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
 class ProfileInfoPage extends StatefulWidget {
+  static const String path = '/profile_info';
+
   @override
   _ProfileInfoPageState createState() => _ProfileInfoPageState();
 }
@@ -208,7 +211,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   update();
-                  Navigator.pushNamed(context, '/membership');
+                  Navigator.pushNamed(context, MembershipPage.path);
                 }
               },
             ),

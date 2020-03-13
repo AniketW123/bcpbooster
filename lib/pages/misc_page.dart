@@ -8,6 +8,8 @@ import '../constants.dart';
 import '../sheet_row.dart';
 
 class MiscPage extends StatefulWidget {
+  static const String path = '/misc';
+
   @override
   _MiscPageState createState() => _MiscPageState();
 }

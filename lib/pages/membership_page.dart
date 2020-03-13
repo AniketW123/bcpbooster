@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'page.dart';
 import 'util/inputs.dart';
 import '../sheet_row.dart';
+import './misc_page.dart';
 
 class MembershipPage extends StatefulWidget {
+  static const String path = '/membership';
+
   @override
   _MembershipPageState createState() => _MembershipPageState();
 }
@@ -105,7 +108,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
           SubmitButton(
             onPressed: () {
               update();
-              Navigator.pushNamed(context, '/misc');
+              Navigator.pushNamed(context, MiscPage.path);
             },
           ),
         ],

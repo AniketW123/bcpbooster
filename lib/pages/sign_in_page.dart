@@ -5,8 +5,11 @@ import 'package:http/http.dart' as http;
 import 'page.dart';
 import 'util/alert.dart';
 import '../constants.dart';
+import './profile_info_page.dart';
 
 class SignInPage extends StatefulWidget {
+  static const String path = '/sign_in';
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -23,7 +26,7 @@ class _SignInPageState extends PageState<SignInPage> {
     stopLoading();
 
     if (res.statusCode == 200) {
-      Navigator.pushNamed(context, '/profile_info');
+      Navigator.pushNamed(context, ProfileInfoPage.path);
     } else {
       alert(
         context: context,
