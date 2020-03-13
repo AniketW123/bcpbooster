@@ -9,7 +9,6 @@ class MembershipPage extends StatefulWidget {
 }
 
 class _MembershipPageState extends PageState<MembershipPage> {
-  bool _isNewMember = true;
   Map<String, String> _radioInputs = {
     'membershipType': sheetRow.membershipType,
     'jacketStyle': sheetRow.jacketStyle,
@@ -18,7 +17,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
   };
 
   void _update() {
-    sheetRow.isNewMember = _isNewMember;
     sheetRow.membershipType = _radioInputs['membershipType'];
     sheetRow.jacketStyle = _radioInputs['jacketStyle'];
     sheetRow.jacketSize = _radioInputs['jacketSize'];
@@ -73,17 +71,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
       padding: EdgeInsets.all(15.0),
       child: Column(
         children: <Widget>[
-          LabeledInput(
-            title: 'New member?',
-            input: Checkbox(
-              value: _isNewMember,
-              onChanged: (val) {
-                setState(() {
-                  _isNewMember = val;
-                });
-              },
-            ),
-          ),
           LabeledInput(
             title: 'Membership Type',
             input: _radioGroup(

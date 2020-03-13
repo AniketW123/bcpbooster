@@ -15,7 +15,6 @@ class SheetRow {
   String zip = '';
 
   // Membership Details
-  bool isNewMember = true;
   String membershipType = 'Premium 4 Year';
   String jacketStyle = 'Male';
   String jacketSize = 'L';
@@ -37,7 +36,6 @@ class SheetRow {
     city,
     state,
     zip,
-    _boolToString(isNewMember),
     membershipType,
     jacketStyle,
     jacketSize,
