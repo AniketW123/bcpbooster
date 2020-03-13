@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'page.dart';
 import 'util/alert.dart';
 import 'util/inputs.dart';
@@ -60,21 +61,18 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           children: <Widget>[
             _FormField(
               label: 'First name',
-              initialValue: sheetRow.firstName,
               onChanged: (val) {
                 sheetRow.firstName = val;
               },
             ),
             _FormField(
               label: 'Last name',
-              initialValue: sheetRow.lastName,
               onChanged: (val) {
                 sheetRow.lastName = val;
               },
             ),
             _FormField(
               label: 'Email',
-              initialValue: sheetRow.email,
               keyboardType: TextInputType.emailAddress,
               onChanged: (val) {
                 sheetRow.email = val;
@@ -82,7 +80,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             ),
             _FormField(
               label: 'Phone number',
-              initialValue: sheetRow.phoneNum,
               keyboardType: TextInputType.phone,
               onChanged: (val) {
                 sheetRow.phoneNum = val;
@@ -90,7 +87,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             ),
             _FormField(
               label: 'Address',
-              initialValue: sheetRow.address,
               onChanged: (val) {
                 sheetRow.address = val;
               },
@@ -102,7 +98,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   flex: 4,
                   child: _FormField(
                     label: 'City',
-                    initialValue: sheetRow.city,
                     onChanged: (val) {
                       sheetRow.city = val;
                     },
@@ -112,7 +107,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   flex: 2,
                   child: _FormField(
                     label: 'State',
-                    initialValue: sheetRow.state,
                     onChanged: (val) {
                       sheetRow.state = val;
                     },
@@ -122,13 +116,13 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   flex: 3,
                   child: _FormField(
                     label: 'Zip code',
-                    initialValue: sheetRow.zip,
                     keyboardType: TextInputType.number,
+                    maxNumbers: 5,
                     onChanged: (val) {
                       sheetRow.zip = val;
                     },
                   ),
-                )
+                ),
               ],
             ),
             SubmitButton(
@@ -147,21 +141,25 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
 
 class _FormField extends StatelessWidget {
   final String label;
-  final String initialValue;
   final ValueChanged<String> onChanged;
   final TextInputType keyboardType;
+  final int maxNumbers;
 
-  _FormField({@required this.label, @required this.initialValue, @required this.onChanged, this.keyboardType = TextInputType.text});
+  _FormField({@required this.label, @required this.onChanged, this.keyboardType = TextInputType.text, this.maxNumbers});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: TextFormField(
-        initialValue: initialValue,
         onChanged: onChanged,
         keyboardType: keyboardType,
+        maxLength: maxNumbers,
+        inputFormatters: [TextInputType.number, TextInputType.phone].contains(keyboardType) ? [
+          WhitelistingTextInputFormatter.digitsOnly
+        ] : null,
         cursorColor: primaryColor,
+        textCapitalization: TextCapitalization.words,
         validator: (value) {
           if (value.isEmpty) {
             return 'Please enter some text';
