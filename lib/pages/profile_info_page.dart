@@ -6,6 +6,9 @@ import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
+const TextStyle _textFieldStyle = TextStyle(
+  fontSize: 18.0,
+);
 
 class ProfileInfoPage extends StatefulWidget {
   @override
@@ -59,65 +62,113 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            _FormField(
-              label: 'First name',
-              onChanged: (val) {
-                sheetRow.firstName = val;
-              },
+            FormPadding(
+              child: TextFormField(
+                cursorColor: primaryColor,
+                style: _textFieldStyle,
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  labelText: 'First name',
+                ),
+                onChanged: (val) {
+                  sheetRow.firstName = val;
+                },
+              ),
             ),
-            _FormField(
-              label: 'Last name',
-              onChanged: (val) {
-                sheetRow.lastName = val;
-              },
+            FormPadding(
+              child: TextFormField(
+                cursorColor: primaryColor,
+                style: _textFieldStyle,
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  labelText: 'Last name',
+                ),
+                onChanged: (val) {
+                  sheetRow.lastName = val;
+                },
+              ),
             ),
-            _FormField(
-              label: 'Email',
-              keyboardType: TextInputType.emailAddress,
-              onChanged: (val) {
-                sheetRow.email = val;
-              },
+            FormPadding(
+              child: TextFormField(
+                cursorColor: primaryColor,
+                keyboardType: TextInputType.emailAddress,
+                style: _textFieldStyle,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+                onChanged: (val) {
+                  sheetRow.email = val;
+                },
+              ),
             ),
-            _FormField(
-              label: 'Phone number',
-              keyboardType: TextInputType.phone,
-              onChanged: (val) {
-                sheetRow.phoneNum = val;
-              },
+            FormPadding(
+              child: TextFormField(
+                cursorColor: primaryColor,
+                style: _textFieldStyle,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                ),
+                onChanged: (val) {
+                  sheetRow.phoneNum = val;
+                },
+              ),
             ),
-            _FormField(
-              label: 'Address',
-              onChanged: (val) {
-                sheetRow.address = val;
-              },
+            FormPadding(
+              child: TextFormField(
+                cursorColor: primaryColor,
+                style: _textFieldStyle,
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                ),
+                onChanged: (val) {
+                  sheetRow.address = val;
+                },
+              ),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Expanded(
+                FormPadding(
                   flex: 4,
-                  child: _FormField(
-                    label: 'City',
+                  child: TextFormField(
+                    cursorColor: primaryColor,
+                    style: _textFieldStyle,
+                    textCapitalization: TextCapitalization.words,
+                    decoration: InputDecoration(
+                      labelText: 'City',
+                    ),
                     onChanged: (val) {
                       sheetRow.city = val;
                     },
                   ),
                 ),
-                Expanded(
+                FormPadding(
                   flex: 2,
-                  child: _FormField(
-                    label: 'State',
+                  child: TextFormField(
+                    cursorColor: primaryColor,
+                    style: _textFieldStyle,
+                    decoration: InputDecoration(
+                      labelText: 'State',
+                    ),
+                    maxLength: 2,
                     onChanged: (val) {
                       sheetRow.state = val;
                     },
                   ),
                 ),
-                Expanded(
+                FormPadding(
                   flex: 3,
-                  child: _FormField(
-                    label: 'Zip code',
+                  child: TextFormField(
+                    cursorColor: primaryColor,
+                    style: _textFieldStyle,
+                    inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                     keyboardType: TextInputType.number,
-                    maxNumbers: 5,
+                    decoration: InputDecoration(
+                      labelText: 'Zip Code',
+                    ),
+                    maxLength: 5,
                     onChanged: (val) {
                       sheetRow.zip = val;
                     },
@@ -139,40 +190,22 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
   }
 }
 
-class _FormField extends StatelessWidget {
-  final String label;
-  final ValueChanged<String> onChanged;
-  final TextInputType keyboardType;
-  final int maxNumbers;
+class FormPadding extends StatelessWidget {
+  final int flex;
+  final Widget child;
 
-  _FormField({@required this.label, @required this.onChanged, this.keyboardType = TextInputType.text, this.maxNumbers});
+  FormPadding({this.flex, @required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    Padding padding = Padding(
       padding: EdgeInsets.all(20.0),
-      child: TextFormField(
-        onChanged: onChanged,
-        keyboardType: keyboardType,
-        maxLength: maxNumbers,
-        inputFormatters: [TextInputType.number, TextInputType.phone].contains(keyboardType) ? [
-          WhitelistingTextInputFormatter.digitsOnly
-        ] : null,
-        cursorColor: primaryColor,
-        textCapitalization: TextCapitalization.words,
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter some text';
-          }
-          return null;
-        },
-        style: TextStyle(
-          fontSize: 18.0,
-        ),
-        decoration: InputDecoration(
-          labelText: label,
-        ),
-      ),
+      child: child,
+    );
+
+    return flex == null ? padding : Expanded(
+      flex: flex,
+      child: padding,
     );
   }
 }
