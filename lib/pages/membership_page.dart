@@ -80,29 +80,38 @@ class _MembershipPageState extends PageState<MembershipPage> {
             input: _radioGroup(
               name: 'membershipType',
               column: true,
-              titles: ['Premium 4 Year - \$500', 'Deluxe Family - \$225', 'Basic Family - \$130', 'Young Alumni - \$50'],
-              values: ['Premium 4 Year', 'Deluxe Family', 'Basic Family', 'Young Alumni'],
+              titles: ['Premium 4 Year - \$500', 'Deluxe Family - \$225', 'Basic Family - \$130', 'Young Alumni - \$50', 'Contact Info Only'],
+              values: ['Premium 4 Year', 'Deluxe Family', 'Basic Family', 'Young Alumni', 'Contact Info Only'],
             ),
           ),
-          LabeledInput(
-            title: 'Jacket Style',
-            input: _radioGroup(
-              name: 'jacketStyle',
-              values: ['Male', 'Female'],
+          Visibility(
+            visible: _radioInputs['membershipType'] != 'Contact Info Only',
+            child: LabeledInput(
+              title: 'Jacket Style',
+              input: _radioGroup(
+                name: 'jacketStyle',
+                values: ['Male', 'Female'],
+              ),
             ),
           ),
-          LabeledInput(
-            title: 'Jacket Size',
-            input: _radioGroup(
-                name: 'jacketSize',
-                values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+          Visibility(
+            visible: _radioInputs['membershipType'] != 'Contact Info Only',
+            child: LabeledInput(
+              title: 'Jacket Size',
+              input: _radioGroup(
+                  name: 'jacketSize',
+                  values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+              ),
             ),
           ),
-          LabeledInput(
-            title: 'Sports Program Format',
-            input: _radioGroup(
-                name: 'sportsFormat',
-                values: ['Digital', 'Printed']
+          Visibility(
+            visible: _radioInputs['membershipType'] != 'Contact Info Only',
+            child: LabeledInput(
+              title: 'Sports Program Format',
+              input: _radioGroup(
+                  name: 'sportsFormat',
+                  values: ['Digital', 'Printed']
+              ),
             ),
           ),
           SubmitButton(
