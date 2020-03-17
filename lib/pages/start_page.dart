@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
 import 'profile_info_page.dart';
-import 'util/alert.dart';
 import '../constants.dart';
+import '../util/alert.dart';
 
 class StartPage extends StatefulWidget {
   static const String path = '/start';

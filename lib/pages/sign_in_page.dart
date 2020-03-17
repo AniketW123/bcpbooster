@@ -4,8 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'page.dart';
 import 'start_page.dart';
-import 'util/alert.dart';
 import '../constants.dart';
+import '../util/alert.dart';
 
 class SignInPage extends StatefulWidget {
   static const String path = '/sign_in';

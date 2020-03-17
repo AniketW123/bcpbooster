@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
-import 'util/inputs.dart';
+import 'misc_page.dart';
 import '../sheet_row.dart';
-import './misc_page.dart';
+import '../util/inputs.dart';
+import '../util/submit.dart';
 
 class MembershipPage extends StatefulWidget {
   static const String path = '/membership';
