@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
@@ -19,9 +21,47 @@ class _SearchPageState extends PageState<SearchPage> {
   String _lastName = '';
 
   void _search() async {
-    if (_formKey.currentState.validate()) {
+    startLoading();
 
+    http.Response res = await http.get(
+      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/C2:D',
+      headers: await googleSignIn.currentUser.authHeaders,
+    );
+
+    stopLoading();
+
+    for (List<dynamic> name in jsonDecode(res.body)['values']) {
+      if (name[0].toLowerCase() == _firstName.toLowerCase() && name[1].toLowerCase() == _lastName.toLowerCase()) {
+        alert(
+          context: context,
+          title: 'Match Found',
+          message: Text('${name.join(' ')} is a Booster Club Member'),
+          actions: <Widget>[
+            AlertButton(
+              'OK',
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+        return;
+      }
     }
+
+    alert(
+      context: context,
+      title: 'No Match Found',
+      message: Text('$_firstName $_lastName is not a Booster Club Member'),
+      actions: <Widget>[
+        AlertButton(
+          'OK',
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    );
   }
 
   @override
@@ -61,7 +101,11 @@ class _SearchPageState extends PageState<SearchPage> {
             ),
             PrimaryButton(
               text: 'Search',
-              onPressed: _search,
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  _search();
+                }
+              },
             ),
           ],
         ),
