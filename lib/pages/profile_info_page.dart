@@ -2,11 +2,12 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'page.dart';
+import 'start_page.dart';
+import 'membership_page.dart';
 import 'util/alert.dart';
 import 'util/inputs.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
-import './membership_page.dart';
 
 const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
                               'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
@@ -42,28 +43,25 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
     return AppBar(
       title: Text('Profile Info'),
       leading: IconButton(
-        icon: Icon(
-          Icons.exit_to_app,
-          color: Colors.white,
-        ),
+        icon: Icon(Icons.clear),
         onPressed: () {
           alert(
             context: context,
-            title: 'Are you sure you want to sign out?',
-            message: Text('If you sign out, any information not saved will be lost.'),
+            title: 'Are you sure you want to exit?',
+            message: Text('If you exit, any information not submitted will be lost.'),
             actions: <Widget>[
               AlertButton(
-                'Cancel',
+                'Stay',
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
               AlertButton(
-                'Sign Out',
+                'Exit',
                 textColor: Colors.red.shade700,
                 onPressed: () {
                   sheetRow = SheetRow();
-                  googleSignIn.disconnect();
+                  Navigator.popUntil(context, ModalRoute.withName(StartPage.path));
                 },
               ),
             ],

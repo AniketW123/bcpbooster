@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'alert.dart';
 import '../page.dart';
+import '../start_page.dart';
 import '../profile_info_page.dart';
 import '../../constants.dart';
 import '../../sheet_row.dart';
@@ -217,7 +218,7 @@ class SubmitButton extends StatelessWidget {
             'OK',
             onPressed: () {
               sheetRow = SheetRow();
-              Navigator.pushNamed(context, '/profile_info');
+              Navigator.popUntil(context, ModalRoute.withName(StartPage.path));
             },
           )
         ],

@@ -3,9 +3,9 @@ import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'page.dart';
+import 'start_page.dart';
 import 'util/alert.dart';
 import '../constants.dart';
-import './profile_info_page.dart';
 
 class SignInPage extends StatefulWidget {
   static const String path = '/sign_in';
@@ -26,7 +26,7 @@ class _SignInPageState extends PageState<SignInPage> {
     stopLoading();
 
     if (res.statusCode == 200) {
-      Navigator.pushNamed(context, ProfileInfoPage.path);
+      Navigator.pushNamed(context, StartPage.path);
     } else {
       alert(
         context: context,
