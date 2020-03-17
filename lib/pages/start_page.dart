@@ -46,7 +46,6 @@ class _StartPageState extends PageState<StartPage> {
   @override
   Widget buildBody(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Padding(
           padding: EdgeInsets.symmetric(vertical: 150.0),
@@ -76,7 +75,6 @@ class _StartPageState extends PageState<StartPage> {
             Navigator.pushNamed(context, ProfileInfoPage.path);
           },
         ),
-        SizedBox(),
       ],
     );
   }

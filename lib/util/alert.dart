@@ -8,6 +8,8 @@ void alert({@required BuildContext context, @required String title, Widget messa
         title: Text(title),
         content: message,
         actions: actions,
+        actionsPadding: EdgeInsets.only(right: 10.0),
+        buttonPadding: EdgeInsets.only(bottom: 10.0, left: 10.0),
       )
   );
 }
@@ -25,6 +27,7 @@ class AlertButton extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
+          fontSize: 16.0,
           color: textColor
         ),
       ),
