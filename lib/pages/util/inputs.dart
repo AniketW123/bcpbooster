@@ -130,10 +130,10 @@ class DropdownTextField extends StatelessWidget {
 }
 
 class SubmitButton extends StatelessWidget {
-  final String title;
+  final bool done;
   final VoidCallback onPressed;
 
-  SubmitButton({this.title = 'Next', @required this.onPressed});
+  SubmitButton({this.done = false, @required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +141,7 @@ class SubmitButton extends StatelessWidget {
       padding: EdgeInsets.only(top: 20.0),
       child: RaisedButton(
         child: Text(
-          title,
+          done ? 'Done' : 'Next',
           style: TextStyle(
             fontSize: 28.0,
           ),

@@ -131,7 +131,7 @@ class _MiscPageState extends PageState<MiscPage> {
             ),
           ),
           SubmitButton(
-            title: 'Done',
+            done: true,
             onPressed: () {
               update();
               _submit();
