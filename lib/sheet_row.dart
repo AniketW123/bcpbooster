@@ -9,6 +9,7 @@ class SheetRow {
   String lastName = '';
   String email = '';
   String phoneNum = '';
+  String gradYear = '';
   String address = '';
   String city = '';
   String state = '';
@@ -32,6 +33,7 @@ class SheetRow {
     lastName,
     email,
     phoneNum,
+    gradYear,
     address,
     city,
     state,

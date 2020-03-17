@@ -14,6 +14,10 @@ const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'F
                               'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
                               'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
+final int _currYear = DateTime.now().add(Duration(days: 185)).year;
+final List<String> _years = [_currYear, _currYear + 1, _currYear + 2, _currYear + 3]
+    .map((e) => e.toString()).toList();
+
 class ProfileInfoPage extends StatefulWidget {
   static const String path = '/profile_info';
 
@@ -24,10 +28,12 @@ class ProfileInfoPage extends StatefulWidget {
 class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String _gradYear = _years[3];
   String _state = 'CA';
 
   @override
   void update() {
+    sheetRow.gradYear = _gradYear;
     sheetRow.state = _state;
   }
 
@@ -77,7 +83,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           children: <Widget>[
             FormPadding(
               child: WordsTextField(
-                label: 'First name',
+                label: 'First Name',
                 onChanged: (val) {
                   sheetRow.firstName = val;
                 },
@@ -85,7 +91,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             ),
             FormPadding(
               child: WordsTextField(
-                label: 'Last name',
+                label: 'Last Name',
                 onChanged: (val) {
                   sheetRow.lastName = val;
                 },
@@ -105,14 +111,33 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 },
               ),
             ),
-            FormPadding(
-              child: NumberTextField(
-                label: 'Phone Number',
-                maxLength: 10,
-                onChanged: (val) {
-                  sheetRow.phoneNum = val;
-                },
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                FormPadding(
+                  flex: 2,
+                  child: NumberTextField(
+                    label: 'Phone Number',
+                    maxLength: 10,
+                    onChanged: (val) {
+                      sheetRow.phoneNum = val;
+                    },
+                  ),
+                ),
+                FormPadding(
+                  flex: 1,
+                  child: DropdownTextField(
+                    label: 'Graduation Year',
+                    value: _gradYear,
+                    items: _years,
+                    onChanged: (val) {
+                      setState(() {
+                        _gradYear = val;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
             FormPadding(
               child: WordsTextField(
