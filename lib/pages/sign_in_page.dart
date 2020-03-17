@@ -80,7 +80,6 @@ class _SignInPageState extends PageState<SignInPage> {
             },
           ),
         ),
-        SizedBox(),
       ],
     );
   }

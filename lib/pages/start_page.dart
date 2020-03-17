@@ -51,7 +51,7 @@ class _StartPageState extends PageState<StartPage> {
         TitleText('Bellarmine Booster Club Signups'),
         RaisedButton(
           child: Text(
-            'Start',
+            'Add New Member',
             style: TextStyle(
               fontSize: 28.0,
             ),
