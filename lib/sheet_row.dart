@@ -43,6 +43,7 @@ class SheetRow {
     jacketSize,
     _boolToString(jacketPickedUp),
     _boolToString(capPickedUp),
+    sportsFormat,
     _boolToString(paymentConfirmed),
   ];
 

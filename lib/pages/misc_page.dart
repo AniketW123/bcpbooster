@@ -23,11 +23,10 @@ class _MiscPageState extends PageState<MiscPage> {
     startLoading();
 
     http.Response res = await http.post(
-      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/A1:Q1:append?valueInputOption=USER_ENTERED',
+      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/1:1:append?valueInputOption=USER_ENTERED',
       headers: await googleSignIn.currentUser.authHeaders,
       body: jsonEncode({
         'majorDimension': 'ROWS',
-        'range': 'A1:Q1',
         'values': [sheetRow.getList()]
       }),
     );
