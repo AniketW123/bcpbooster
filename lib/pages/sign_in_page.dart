@@ -31,7 +31,7 @@ class _SignInPageState extends PageState<SignInPage> {
       alert(
         context: context,
         title: 'Error!',
-        message: 'Unfortunately, this account does not have access to the signups spreadsheet. Please sign in with a different account or contact $accessEmail to get access.',
+        message: Text('Unfortunately, this account does not have access to the signups spreadsheet. Please sign in with a different account or contact $accessEmail to get access.'),
         actions: <Widget>[
           AlertButton(
             'OK',

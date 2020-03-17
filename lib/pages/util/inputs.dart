@@ -160,7 +160,7 @@ class SubmitButton extends StatelessWidget {
       alert(
         context: context,
         title: 'Done!',
-        message: 'Response recorded for ${sheetRow.firstName} ${sheetRow.lastName}.',
+        message: Text('Response recorded for ${sheetRow.firstName} ${sheetRow.lastName}.'),
         actions: <Widget>[
           AlertButton(
             'OK',

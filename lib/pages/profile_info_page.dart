@@ -50,7 +50,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           alert(
             context: context,
             title: 'Are you sure you want to sign out?',
-            message: 'If you sign out, any information not saved will be lost.',
+            message: Text('If you sign out, any information not saved will be lost.'),
             actions: <Widget>[
               AlertButton(
                 'Cancel',
