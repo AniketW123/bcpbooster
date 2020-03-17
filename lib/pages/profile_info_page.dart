@@ -26,13 +26,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
 
   String _state = 'CA';
 
-  String _validator(String val) {
-    if (val.length == 0) {
-      return 'Must contain text.';
-    }
-    return null;
-  }
-
   @override
   void update() {
     sheetRow.state = _state;
@@ -83,28 +76,16 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
         child: Column(
           children: <Widget>[
             FormPadding(
-              child: TextFormField(
-                cursorColor: primaryColor,
-                style: inputStyle,
-                textCapitalization: TextCapitalization.words,
-                validator: _validator,
-                decoration: InputDecoration(
-                  labelText: 'First name',
-                ),
+              child: WordsTextField(
+                label: 'First name',
                 onChanged: (val) {
                   sheetRow.firstName = val;
                 },
               ),
             ),
             FormPadding(
-              child: TextFormField(
-                cursorColor: primaryColor,
-                style: inputStyle,
-                textCapitalization: TextCapitalization.words,
-                validator: _validator,
-                decoration: InputDecoration(
-                  labelText: 'Last name',
-                ),
+              child: WordsTextField(
+                label: 'Last name',
                 onChanged: (val) {
                   sheetRow.lastName = val;
                 },
@@ -126,9 +107,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             ),
             FormPadding(
               child: NumberTextField(
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                ),
+                label: 'Phone Number',
                 maxLength: 10,
                 onChanged: (val) {
                   sheetRow.phoneNum = val;
@@ -136,14 +115,8 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               ),
             ),
             FormPadding(
-              child: TextFormField(
-                cursorColor: primaryColor,
-                style: inputStyle,
-                textCapitalization: TextCapitalization.words,
-                validator: _validator,
-                decoration: InputDecoration(
-                  labelText: 'Address',
-                ),
+              child: WordsTextField(
+                label: 'Address',
                 onChanged: (val) {
                   sheetRow.address = val;
                 },
@@ -154,14 +127,8 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               children: <Widget>[
                 FormPadding(
                   flex: 4,
-                  child: TextFormField(
-                    cursorColor: primaryColor,
-                    style: inputStyle,
-                    textCapitalization: TextCapitalization.words,
-                    validator: _validator,
-                    decoration: InputDecoration(
-                      labelText: 'City',
-                    ),
+                  child: WordsTextField(
+                    label: 'City',
                     onChanged: (val) {
                       sheetRow.city = val;
                     },
@@ -169,36 +136,21 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 ),
                 FormPadding(
                   flex: 2,
-                  child: Container(
-                    padding: EdgeInsets.only(top: 18.0),
-                    height: 75.0,
-                    child: DropdownButton(
-                      value: _state,
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      items: _states.map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      )).toList(),
-                      isExpanded: true,
-                      style: inputStyle,
-                      underline: Container(
-                        height: 1,
-                        color: Colors.black45,
-                      ),
-                      onChanged: (val) {
-                        setState(() {
-                          _state = val;
-                        });
-                      },
-                    ),
+                  child: DropdownTextField(
+                    label: 'State',
+                    value: _state,
+                    items: _states,
+                    onChanged: (val) {
+                      setState(() {
+                        _state = val;
+                      });
+                    },
                   ),
                 ),
                 FormPadding(
                   flex: 3,
                   child: NumberTextField(
-                    decoration: InputDecoration(
-                      labelText: 'Zip Code',
-                    ),
+                    label: 'Zip Code',
                     maxLength: 5,
                     onChanged: (val) {
                       sheetRow.zip = val;

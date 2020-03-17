@@ -32,11 +32,11 @@ class LabeledInput extends StatelessWidget {
 }
 
 class NumberTextField extends StatelessWidget {
-  final InputDecoration decoration;
+  final String label;
   final int maxLength;
-  final void Function(String) onChanged;
+  final ValueChanged<String> onChanged;
 
-  NumberTextField({this.decoration, this.maxLength, @required this.onChanged});
+  NumberTextField({this.label, this.maxLength, @required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,9 @@ class NumberTextField extends StatelessWidget {
       style: inputStyle,
       inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
       keyboardType: TextInputType.phone,
-      decoration: decoration,
+      decoration: InputDecoration(
+        labelText: label,
+      ),
       maxLength: maxLength,
       onChanged: onChanged,
       validator: (val) {
@@ -54,6 +56,75 @@ class NumberTextField extends StatelessWidget {
         }
         return null;
       },
+    );
+  }
+}
+
+class WordsTextField extends StatelessWidget {
+  final String label;
+  final ValueChanged<String> onChanged;
+
+  WordsTextField({this.label, @required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      cursorColor: primaryColor,
+      style: inputStyle,
+      textCapitalization: TextCapitalization.words,
+      validator: (val) {
+        if (val.length == 0) {
+          return 'Must contain text.';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: label,
+      ),
+      onChanged: onChanged,
+    );
+  }
+}
+
+
+class DropdownTextField extends StatelessWidget {
+  final String label;
+  final String value;
+  final List<String> items;
+  final ValueChanged<String> onChanged;
+
+  DropdownTextField({this.label, @required this.value, @required this.items, @required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 0.0),
+      height: 66.0,
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            fontSize: 18.0,
+          ),
+        ),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            value: value,
+            icon: Icon(Icons.keyboard_arrow_down),
+            items: items.map((e) => DropdownMenuItem(
+              value: e,
+              child: Text(e),
+            )).toList(),
+            isExpanded: true,
+            style: inputStyle,
+            underline: Container(
+              height: 1,
+              color: Colors.black45,
+            ),
+            onChanged: onChanged,
+          ),
+        ),
+      ),
     );
   }
 }
