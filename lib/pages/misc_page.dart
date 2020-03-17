@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
 import '../sheet_row.dart';
+import '../util/buttons.dart';
 import '../util/inputs.dart';
-import '../util/submit.dart';
 
 class MiscPage extends StatefulWidget {
   static const String path = '/misc';

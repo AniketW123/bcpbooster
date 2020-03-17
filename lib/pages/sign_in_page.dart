@@ -75,9 +75,7 @@ class _SignInPageState extends PageState<SignInPage> {
         Transform.scale(
           scale: 1.25,
           child: GoogleSignInButton(
-            onPressed: () {
-              googleSignIn.signIn();
-            },
+            onPressed: googleSignIn.signIn,
           ),
         ),
       ],

@@ -4,6 +4,7 @@ import 'search_page.dart';
 import 'profile_info_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
+import '../util/buttons.dart';
 import '../util/text.dart';
 
 class StartPage extends StatefulWidget {
@@ -34,9 +35,7 @@ class _StartPageState extends PageState<StartPage> {
               AlertButton(
                 'Sign Out',
                 textColor: Colors.red.shade700,
-                onPressed: () {
-                  googleSignIn.disconnect();
-                },
+                onPressed: googleSignIn.disconnect,
               ),
             ],
           );
@@ -50,39 +49,14 @@ class _StartPageState extends PageState<StartPage> {
     return Column(
       children: <Widget>[
         TitleText('Bellarmine Booster Club Signups'),
-        Padding(
-          padding: EdgeInsets.only(bottom: 50.0),
-          child: RaisedButton(
-            child: Text(
-              'Add New Member',
-              style: TextStyle(
-                fontSize: 28.0,
-              ),
-            ),
-            color: primaryColor, // Hex: 2C3872
-            textColor: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, ProfileInfoPage.path);
-            },
-          ),
+        PrimaryButton(
+          text: 'Add New Member',
+          onPressed: () {
+            Navigator.pushNamed(context, ProfileInfoPage.path);
+          },
         ),
-        RaisedButton(
-          child: Text(
-            'Find Member',
-            style: TextStyle(
-              fontSize: 28.0,
-            ),
-          ),
-          color: primaryColor, // Hex: 2C3872
-          textColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
+        PrimaryButton(
+          text: 'Find Member',
           onPressed: () {
             Navigator.pushNamed(context, SearchPage.path);
           },

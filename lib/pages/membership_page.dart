@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'page.dart';
 import 'misc_page.dart';
 import '../sheet_row.dart';
+import '../util/buttons.dart';
 import '../util/inputs.dart';
-import '../util/submit.dart';
 
 class MembershipPage extends StatefulWidget {
   static const String path = '/membership';
@@ -100,8 +100,8 @@ class _MembershipPageState extends PageState<MembershipPage> {
             child: LabeledInput(
               title: 'Jacket Size',
               input: _radioGroup(
-                  name: 'jacketSize',
-                  values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+                name: 'jacketSize',
+                values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
               ),
             ),
           ),
@@ -110,8 +110,8 @@ class _MembershipPageState extends PageState<MembershipPage> {
             child: LabeledInput(
               title: 'Sports Program Format',
               input: _radioGroup(
-                  name: 'sportsFormat',
-                  values: ['Digital', 'Printed']
+                name: 'sportsFormat',
+                values: ['Digital', 'Printed']
               ),
             ),
           ),

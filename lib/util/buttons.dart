@@ -8,6 +8,36 @@ import '../pages/profile_info_page.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
+class PrimaryButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  PrimaryButton({@required this.text, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20.0),
+      child: RaisedButton(
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 28.0,
+          ),
+        ),
+        color: primaryColor, // Hex: 2C3872
+        textColor: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+
 class SubmitButton extends StatelessWidget {
   final bool done;
   final String path;
@@ -100,32 +130,18 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 20.0),
-      child: RaisedButton(
-        child: Text(
-          done ? 'Complete' : 'Next',
-          style: TextStyle(
-            fontSize: 28.0,
-          ),
-        ),
-        color: primaryColor, // Hex: 2C3872
-        textColor: Colors.white,
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        onPressed: () {
-          if (condition == null || condition()) {
-            state.update();
-            if (done) {
-              _confirm(context);
-            } else {
-              Navigator.pushNamed(context, path);
-            }
+    return PrimaryButton(
+      text: done ? 'Complete' : 'Next',
+      onPressed: () {
+        if (condition == null || condition()) {
+          state.update();
+          if (done) {
+            _confirm(context);
+          } else {
+            Navigator.pushNamed(context, path);
           }
-        },
-      ),
+        }
+      },
     );
   }
 }
