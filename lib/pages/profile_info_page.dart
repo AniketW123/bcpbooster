@@ -51,12 +51,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             title: 'Are you sure you want to exit?',
             message: Text('If you exit, any information not submitted will be lost.'),
             actions: <Widget>[
-              AlertButton(
-                'Stay',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+              AlertButton('Stay'),
               AlertButton(
                 'Exit',
                 textColor: Colors.red.shade700,

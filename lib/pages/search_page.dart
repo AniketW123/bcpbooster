@@ -37,12 +37,7 @@ class _SearchPageState extends PageState<SearchPage> {
           title: 'Match Found',
           message: Text('${name.join(' ')} is a Booster Club Member'),
           actions: <Widget>[
-            AlertButton(
-              'OK',
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            AlertButton('OK'),
           ],
         );
         return;
@@ -54,12 +49,7 @@ class _SearchPageState extends PageState<SearchPage> {
       title: 'No Match Found',
       message: Text('$_firstName $_lastName is not a Booster Club Member'),
       actions: <Widget>[
-        AlertButton(
-          'OK',
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        AlertButton('OK'),
       ],
     );
   }

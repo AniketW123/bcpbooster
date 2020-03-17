@@ -26,12 +26,7 @@ class _StartPageState extends PageState<StartPage> {
             context: context,
             title: 'Are you sure you want to sign out?',
             actions: <Widget>[
-              AlertButton(
-                'Cancel',
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+              AlertButton('Cancel'),
               AlertButton(
                 'Sign Out',
                 textColor: Colors.red.shade700,

@@ -31,7 +31,9 @@ class AlertButton extends StatelessWidget {
           color: textColor
         ),
       ),
-      onPressed: onPressed,
+      onPressed: onPressed ?? () {
+        Navigator.pop(context);
+      },
     );
   }
 }
