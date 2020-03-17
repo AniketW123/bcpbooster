@@ -115,11 +115,9 @@ class _MembershipPageState extends PageState<MembershipPage> {
             ),
           ),
           SubmitButton(
+            state: this,
             done: _radioInputs['membershipType'] == 'Contact Info Only',
-            onPressed: () {
-              update();
-              Navigator.pushNamed(context, MiscPage.path);
-            },
+            path: MiscPage.path,
           ),
         ],
       ),

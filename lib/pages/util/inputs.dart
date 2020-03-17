@@ -1,6 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'alert.dart';
+import '../page.dart';
 import '../../constants.dart';
+import '../../sheet_row.dart';
 
 class LabeledInput extends StatelessWidget {
   final String title;
@@ -131,9 +136,43 @@ class DropdownTextField extends StatelessWidget {
 
 class SubmitButton extends StatelessWidget {
   final bool done;
-  final VoidCallback onPressed;
+  final String path;
+  final PageState state;
+  final bool Function() condition;
 
-  SubmitButton({this.done = false, @required this.onPressed});
+  SubmitButton({this.done = false, this.path, @required this.state, this.condition}) : assert(done || path != null);
+
+  void _submit(BuildContext context) async {
+    state.startLoading();
+
+    http.Response res = await http.post(
+      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/1:1:append?valueInputOption=USER_ENTERED',
+      headers: await googleSignIn.currentUser.authHeaders,
+      body: jsonEncode({
+        'majorDimension': 'ROWS',
+        'values': [sheetRow.getList()]
+      }),
+    );
+
+    state.stopLoading();
+
+    if (res.statusCode == 200) {
+      alert(
+        context: context,
+        title: 'Done!',
+        message: 'Response recorded for ${sheetRow.firstName} ${sheetRow.lastName}.',
+        actions: <Widget>[
+          AlertButton(
+            'OK',
+            onPressed: () {
+              sheetRow = SheetRow();
+              Navigator.pushNamed(context, '/profile_info');
+            },
+          )
+        ],
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +191,16 @@ class SubmitButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        onPressed: onPressed,
+        onPressed: () {
+          if (condition == null || condition()) {
+            state.update();
+            if (done) {
+              _submit(context);
+            } else {
+              Navigator.pushNamed(context, path);
+            }
+          }
+        },
       ),
     );
   }

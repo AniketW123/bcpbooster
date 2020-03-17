@@ -185,12 +185,9 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               ],
             ),
             SubmitButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  update();
-                  Navigator.pushNamed(context, MembershipPage.path);
-                }
-              },
+              state: this,
+              path: MembershipPage.path,
+              condition: () => _formKey.currentState.validate()
             ),
           ],
         ),

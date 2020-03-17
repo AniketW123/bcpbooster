@@ -1,10 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'page.dart';
-import 'util/alert.dart';
 import 'util/inputs.dart';
-import '../constants.dart';
 import '../sheet_row.dart';
 
 class MiscPage extends StatefulWidget {
@@ -20,38 +16,6 @@ class _MiscPageState extends PageState<MiscPage> {
   bool _paymentConfirmed = sheetRow.paymentConfirmed;
   bool _boardInterest = sheetRow.boardInterest;
   bool _volunteerInterest = sheetRow.volunteerInterest;
-
-  void _submit() async {
-    startLoading();
-
-    http.Response res = await http.post(
-      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/1:1:append?valueInputOption=USER_ENTERED',
-      headers: await googleSignIn.currentUser.authHeaders,
-      body: jsonEncode({
-        'majorDimension': 'ROWS',
-        'values': [sheetRow.getList()]
-      }),
-    );
-
-    stopLoading();
-
-    if (res.statusCode == 200) {
-      alert(
-        context: context,
-        title: 'Done!',
-        message: 'Response recorded for ${sheetRow.firstName} ${sheetRow.lastName}.',
-        actions: <Widget>[
-          AlertButton(
-            'OK',
-            onPressed: () {
-              sheetRow = SheetRow();
-              Navigator.pushNamed(context, '/profile_info');
-            },
-          )
-        ],
-      );
-    }
-  }
 
   @override
   void update() {
@@ -131,11 +95,8 @@ class _MiscPageState extends PageState<MiscPage> {
             ),
           ),
           SubmitButton(
-            done: true,
-            onPressed: () {
-              update();
-              _submit();
-            },
+            state: this,
+            done: true
           ),
         ],
       ),

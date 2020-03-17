@@ -21,35 +21,46 @@ class SheetRow {
   String jacketSize = 'L';
   String sportsFormat = 'Digital';
 
-  // Payment and Swag
+  // Miscellaneous
   bool capPickedUp = false;
   bool jacketPickedUp = false;
   bool paymentConfirmed = false;
   bool boardInterest = false;
   bool volunteerInterest = true;
 
-  List<String> getList() => [
-    googleSignIn.currentUser.email,
-    formatDate(DateTime.now(), [mm, '-', dd, '-', yyyy, ' ', h, ':', nn, ' ', am]), // e.g. 02-20-2020 1:22 PM
-    firstName,
-    lastName,
-    email,
-    phoneNum,
-    gradYear,
-    address,
-    city,
-    state,
-    zip,
-    membershipType,
-    jacketStyle,
-    jacketSize,
-    _boolToString(jacketPickedUp),
-    _boolToString(capPickedUp),
-    sportsFormat,
-    _boolToString(paymentConfirmed),
-    _boolToString(boardInterest),
-    _boolToString(volunteerInterest),
-  ];
+  List<String> getList() {
+    List<String> list = [
+      googleSignIn.currentUser.email,
+      formatDate(
+          DateTime.now(), [mm, '-', dd, '-', yyyy, ' ', h, ':', nn, ' ', am]),
+      // e.g. 02-20-2020 1:22 PM
+      firstName,
+      lastName,
+      email,
+      phoneNum,
+      gradYear,
+      address,
+      city,
+      state,
+      zip,
+      membershipType
+    ];
+
+    if (membershipType != 'Contact Info Only') {
+      list.addAll([
+        jacketStyle,
+        jacketSize,
+        _boolToString(jacketPickedUp),
+        _boolToString(capPickedUp),
+        sportsFormat,
+        _boolToString(paymentConfirmed),
+        _boolToString(boardInterest),
+        _boolToString(volunteerInterest)
+      ]);
+    }
+
+    return list;
+  }
 
   String _boolToString(bool b) => b ? 'YES' : 'NO';
 }
