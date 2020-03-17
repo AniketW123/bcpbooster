@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'alert.dart';
 import '../page.dart';
+import '../profile_info_page.dart';
 import '../../constants.dart';
 import '../../sheet_row.dart';
 
@@ -142,6 +143,56 @@ class SubmitButton extends StatelessWidget {
 
   SubmitButton({this.done = false, this.path, @required this.state, this.condition}) : assert(done || path != null);
 
+  void _confirm(BuildContext context) {
+    List<Text> message = [
+      Text('${sheetRow.firstName} ${sheetRow.lastName}'),
+      Text(sheetRow.email),
+      Text('Phone: ${sheetRow.phoneNum}'),
+      Text('Class of ${sheetRow.gradYear}'),
+      Text('${sheetRow.address}, ${sheetRow.city}, ${sheetRow.state} ${sheetRow.zip}')
+    ];
+
+    if (sheetRow.membershipType == 'Contact Info Only') {
+      message.add(Text(sheetRow.membershipType));
+    } else {
+      message.addAll([
+        Text('${sheetRow.membershipType} Membership'),
+        Text('Jacket: ${sheetRow.jacketStyle} ${sheetRow.jacketSize}'),
+        Text('Sports Program Format: ${sheetRow.sportsFormat}'),
+        Text('Cap ${sheetRow.capPickedUp ? '' : 'not '}picked up'),
+        Text('Jacket ${sheetRow.jacketPickedUp ? '' : 'not '}picked up'),
+        Text('Payment ${sheetRow.paymentConfirmed ? '' : 'not '}confirmed'),
+        Text('${sheetRow.capPickedUp ? 'I' : 'Not i'}nterested in joining the Dad\'s Club board'),
+        Text('${sheetRow.capPickedUp ? 'I' : 'Not i'}nterested in volunteering at Bellarmine events'),
+      ]);
+    }
+
+    alert(
+      context: context,
+      title: 'Are you sure you are done?',
+      message: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: message,
+      ),
+      actions: [
+        AlertButton(
+          'Edit',
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName(ProfileInfoPage.path));
+          },
+        ),
+        AlertButton(
+          'Confirm',
+          onPressed: () {
+            Navigator.pop(context);
+            _submit(context);
+          },
+        ),
+      ]
+    );
+  }
+
   void _submit(BuildContext context) async {
     state.startLoading();
 
@@ -180,7 +231,7 @@ class SubmitButton extends StatelessWidget {
       padding: EdgeInsets.only(top: 20.0),
       child: RaisedButton(
         child: Text(
-          done ? 'Done' : 'Next',
+          done ? 'Complete' : 'Next',
           style: TextStyle(
             fontSize: 28.0,
           ),
@@ -195,7 +246,7 @@ class SubmitButton extends StatelessWidget {
           if (condition == null || condition()) {
             state.update();
             if (done) {
-              _submit(context);
+              _confirm(context);
             } else {
               Navigator.pushNamed(context, path);
             }
