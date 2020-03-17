@@ -18,6 +18,8 @@ class _MiscPageState extends PageState<MiscPage> {
   bool _capPickedUp = sheetRow.capPickedUp;
   bool _jacketPickedUp = sheetRow.jacketPickedUp;
   bool _paymentConfirmed = sheetRow.paymentConfirmed;
+  bool _boardInterest = sheetRow.boardInterest;
+  bool _volunteerInterest = sheetRow.volunteerInterest;
 
   void _submit() async {
     startLoading();
@@ -56,6 +58,8 @@ class _MiscPageState extends PageState<MiscPage> {
     sheetRow.capPickedUp = _capPickedUp;
     sheetRow.jacketPickedUp = _jacketPickedUp;
     sheetRow.paymentConfirmed = _paymentConfirmed;
+    sheetRow.boardInterest = _boardInterest;
+    sheetRow.volunteerInterest = _volunteerInterest;
   }
 
   @override
@@ -100,6 +104,28 @@ class _MiscPageState extends PageState<MiscPage> {
               onChanged: (val) {
                 setState(() {
                   _paymentConfirmed = val;
+                });
+              },
+            ),
+          ),
+          LabeledInput(
+            title: 'Are you interested in joining the Dad\'s Club board?',
+            input: Checkbox(
+              value: _boardInterest,
+              onChanged: (val) {
+                setState(() {
+                  _boardInterest = val;
+                });
+              },
+            ),
+          ),
+          LabeledInput(
+            title: 'Are you interested in volunteering for Bellarmine events?',
+            input: Checkbox(
+              value: _volunteerInterest,
+              onChanged: (val) {
+                setState(() {
+                  _volunteerInterest = val;
                 });
               },
             ),

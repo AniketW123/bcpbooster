@@ -25,7 +25,9 @@ class SheetRow {
   bool capPickedUp = false;
   bool jacketPickedUp = false;
   bool paymentConfirmed = false;
-  // "MM-dd-yyyy hh:mm:ss a"
+  bool boardInterest = false;
+  bool volunteerInterest = true;
+
   List<String> getList() => [
     googleSignIn.currentUser.email,
     formatDate(DateTime.now(), [mm, '-', dd, '-', yyyy, ' ', h, ':', nn, ' ', am]), // e.g. 02-20-2020 1:22 PM
@@ -45,6 +47,8 @@ class SheetRow {
     _boolToString(capPickedUp),
     sportsFormat,
     _boolToString(paymentConfirmed),
+    _boolToString(boardInterest),
+    _boolToString(volunteerInterest),
   ];
 
   String _boolToString(bool b) => b ? 'YES' : 'NO';
