@@ -84,7 +84,7 @@ class _MiscPageState extends PageState<MiscPage> {
             ),
           ),
           LabeledInput(
-            title: 'Are you interested in volunteering for Bellarmine events?',
+            title: 'Are you interested in volunteering at Bellarmine events?',
             input: Checkbox(
               value: _volunteerInterest,
               onChanged: (val) {

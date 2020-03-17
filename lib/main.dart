@@ -22,7 +22,7 @@ class App extends StatelessWidget {
         MembershipPage.path: (_) => MembershipPage(),
         MiscPage.path: (_) => MiscPage(),
       },
-      initialRoute: '/sign_in',
+      initialRoute: SignInPage.path,
     );
   }
 }
