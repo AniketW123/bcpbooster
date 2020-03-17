@@ -3,6 +3,7 @@ import 'page.dart';
 import 'profile_info_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
+import '../util/text.dart';
 
 class StartPage extends StatefulWidget {
   static const String path = '/start';
@@ -47,17 +48,7 @@ class _StartPageState extends PageState<StartPage> {
   Widget buildBody(BuildContext context) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 150.0),
-          child: Text(
-            'Bellarmine Booster Club Signups',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 72.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
+        TitleText('Bellarmine Booster Club Signups'),
         RaisedButton(
           child: Text(
             'Start',

@@ -6,6 +6,7 @@ import 'page.dart';
 import 'start_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
+import '../util/text.dart';
 
 class SignInPage extends StatefulWidget {
   static const String path = '/sign_in';
@@ -69,19 +70,8 @@ class _SignInPageState extends PageState<SignInPage> {
   @override
   Widget buildBody(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 150.0),
-          child: Text(
-            'Bellarmine Booster Club Signups',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 72.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
+        TitleText('Sign in to access form'),
         Transform.scale(
           scale: 1.25,
           child: GoogleSignInButton(
