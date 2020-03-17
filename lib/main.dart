@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'pages/sign_in_page.dart';
 import 'pages/start_page.dart';
+import 'pages/search_page.dart';
 import 'pages/profile_info_page.dart';
 import 'pages/membership_page.dart';
 import 'pages/misc_page.dart';
@@ -20,6 +21,7 @@ class App extends StatelessWidget {
       routes: {
         SignInPage.path: (_) => SignInPage(),
         StartPage.path: (_) => StartPage(),
+        SearchPage.path: (_) => SearchPage(),
         ProfileInfoPage.path: (_) => ProfileInfoPage(),
         MembershipPage.path: (_) => MembershipPage(),
         MiscPage.path: (_) => MiscPage(),

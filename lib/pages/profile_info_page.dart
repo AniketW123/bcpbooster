@@ -80,7 +80,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            FormPadding(
+            TextFieldPadding(
               child: WordsTextField(
                 label: 'First Name',
                 onChanged: (val) {
@@ -88,7 +88,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 },
               ),
             ),
-            FormPadding(
+            TextFieldPadding(
               child: WordsTextField(
                 label: 'Last Name',
                 onChanged: (val) {
@@ -96,7 +96,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 },
               ),
             ),
-            FormPadding(
+            TextFieldPadding(
               child: TextFormField(
                 cursorColor: primaryColor,
                 keyboardType: TextInputType.emailAddress,
@@ -113,7 +113,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                FormPadding(
+                TextFieldPadding(
                   flex: 2,
                   child: NumberTextField(
                     label: 'Phone Number',
@@ -123,7 +123,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                     },
                   ),
                 ),
-                FormPadding(
+                TextFieldPadding(
                   flex: 1,
                   child: DropdownTextField(
                     label: 'Graduation Year',
@@ -138,7 +138,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 ),
               ],
             ),
-            FormPadding(
+            TextFieldPadding(
               child: WordsTextField(
                 label: 'Address',
                 onChanged: (val) {
@@ -149,7 +149,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                FormPadding(
+                TextFieldPadding(
                   flex: 4,
                   child: WordsTextField(
                     label: 'City',
@@ -158,7 +158,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                     },
                   ),
                 ),
-                FormPadding(
+                TextFieldPadding(
                   flex: 2,
                   child: DropdownTextField(
                     label: 'State',
@@ -171,7 +171,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                     },
                   ),
                 ),
-                FormPadding(
+                TextFieldPadding(
                   flex: 3,
                   child: NumberTextField(
                     label: 'Zip Code',
@@ -191,26 +191,6 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class FormPadding extends StatelessWidget {
-  final int flex;
-  final Widget child;
-
-  FormPadding({this.flex, @required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    Padding padding = Padding(
-      padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
-      child: child,
-    );
-
-    return flex == null ? padding : Expanded(
-      flex: flex,
-      child: padding,
     );
   }
 }

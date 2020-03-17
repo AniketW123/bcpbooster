@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
+import 'search_page.dart';
 import 'profile_info_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
@@ -49,9 +50,29 @@ class _StartPageState extends PageState<StartPage> {
     return Column(
       children: <Widget>[
         TitleText('Bellarmine Booster Club Signups'),
+        Padding(
+          padding: EdgeInsets.only(bottom: 50.0),
+          child: RaisedButton(
+            child: Text(
+              'Add New Member',
+              style: TextStyle(
+                fontSize: 28.0,
+              ),
+            ),
+            color: primaryColor, // Hex: 2C3872
+            textColor: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, ProfileInfoPage.path);
+            },
+          ),
+        ),
         RaisedButton(
           child: Text(
-            'Add New Member',
+            'Find Member',
             style: TextStyle(
               fontSize: 28.0,
             ),
@@ -63,7 +84,7 @@ class _StartPageState extends PageState<StartPage> {
             borderRadius: BorderRadius.circular(10.0),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, ProfileInfoPage.path);
+            Navigator.pushNamed(context, SearchPage.path);
           },
         ),
       ],

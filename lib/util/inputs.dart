@@ -31,6 +31,26 @@ class LabeledInput extends StatelessWidget {
   }
 }
 
+class TextFieldPadding extends StatelessWidget {
+  final int flex;
+  final Widget child;
+
+  TextFieldPadding({this.flex, @required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    Padding padding = Padding(
+      padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+      child: child,
+    );
+
+    return flex == null ? padding : Expanded(
+      flex: flex,
+      child: padding,
+    );
+  }
+}
+
 class NumberTextField extends StatelessWidget {
   final String label;
   final int maxLength;
