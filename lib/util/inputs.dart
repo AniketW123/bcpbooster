@@ -117,8 +117,7 @@ class DropdownTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 0.0),
+    return SizedBox(
       height: 66.0,
       child: InputDecorator(
         decoration: InputDecoration(
