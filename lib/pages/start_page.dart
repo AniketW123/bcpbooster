@@ -18,7 +18,7 @@ class _StartPageState extends PageState<StartPage> {
   @override
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Start'),
+      title: Text('Home'),
       leading: IconButton(
         icon: Icon(Icons.exit_to_app),
         onPressed: () {
