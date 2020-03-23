@@ -15,8 +15,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends PageState<SearchPage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   String _firstName = '';
   String _lastName = '';
 
@@ -65,40 +63,33 @@ class _SearchPageState extends PageState<SearchPage> {
   Widget buildBody(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFieldPadding(
-              child: WordsTextField(
-                label: 'First Name',
-                onChanged: (val) {
-                  setState(() {
-                    _firstName = val;
-                  });
-                },
-              ),
-            ),
-            TextFieldPadding(
-              child: WordsTextField(
-                label: 'Last Name',
-                onChanged: (val) {
-                  setState(() {
-                    _lastName = val;
-                  });
-                },
-              ),
-            ),
-            PrimaryButton(
-              text: 'Search',
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  _search();
-                }
+      child: Column(
+        children: <Widget>[
+          TextFieldPadding(
+            child: WordsTextField(
+              label: 'First Name',
+              onChanged: (val) {
+                setState(() {
+                  _firstName = val;
+                });
               },
             ),
-          ],
-        ),
+          ),
+          TextFieldPadding(
+            child: WordsTextField(
+              label: 'Last Name',
+              onChanged: (val) {
+                setState(() {
+                  _lastName = val;
+                });
+              },
+            ),
+          ),
+          PrimaryButton(
+            text: 'Search',
+            onPressed: _search,
+          ),
+        ],
       ),
     );
   }
