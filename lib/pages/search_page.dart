@@ -7,6 +7,11 @@ import '../util/alert.dart';
 import '../util/buttons.dart';
 import '../util/inputs.dart';
 
+const String _listId = '1wXQorTKCTlWZqsaYFLPhOCTVA7gy9HwKSmin6QEUzJc';
+final List<Widget> _alertActions = [
+  AlertButton('OK'),
+];
+
 class SearchPage extends StatefulWidget {
   static const String path = '/search';
 
@@ -19,37 +24,61 @@ class _SearchPageState extends PageState<SearchPage> {
   String _lastName = '';
 
   void _search() async {
+    if (_firstName == '' && _lastName == '') {
+      alert(
+        context: context,
+        title: 'Nothing searched',
+        message: Text('Please enter a first name or last name to search.'),
+        actions: _alertActions,
+      );
+      return;
+    }
+
     startLoading();
 
     http.Response res = await http.get(
-      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/C2:D',
+      'https://sheets.googleapis.com/v4/spreadsheets/$_listId/values/C2:D',
       headers: await googleSignIn.currentUser.authHeaders,
     );
 
-    stopLoading();
-
-    for (List<dynamic> name in jsonDecode(res.body)['values']) {
-      if (name[0].toLowerCase() == _firstName.toLowerCase() && name[1].toLowerCase() == _lastName.toLowerCase()) {
-        alert(
-          context: context,
-          title: 'Match Found',
-          message: Text('${name.join(' ')} is a Booster Club Member'),
-          actions: <Widget>[
-            AlertButton('OK'),
-          ],
-        );
-        return;
-      }
+    if (res.statusCode != 200) {
+      stopLoading();
+      alert(
+        context: context,
+        title: 'Error.',
+        message: Text('Error accessing spreadsheet. Error code ${res.statusCode}.'),
+        actions: _alertActions,
+      );
+      return;
     }
 
-    alert(
-      context: context,
-      title: 'No Match Found',
-      message: Text('$_firstName $_lastName is not a Booster Club Member'),
-      actions: <Widget>[
-        AlertButton('OK'),
-      ],
-    );
+    Iterable<dynamic> names = jsonDecode(res.body)['values'];
+
+    if (_firstName != '') {
+      names = names.where((name) => name[0].toLowerCase() == _firstName.toLowerCase());
+    }
+
+    if (_lastName != '') {
+      names = names.where((name) => name[1].toLowerCase() == _lastName.toLowerCase());
+    }
+
+    stopLoading();
+
+    if (names.length > 0) {
+      alert(
+        context: context,
+        title: 'Match Found',
+        message: Text('The following members match your query: \n\n${names.map((name) => name.join(' ')).join('\n')}'),
+        actions: _alertActions,
+      );
+    } else {
+      alert(
+        context: context,
+        title: 'No Match Found',
+        message: Text('No members matched your query.'),
+        actions: _alertActions,
+      );
+    }
   }
 
   @override
