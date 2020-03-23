@@ -1,9 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['https://www.googleapis.com/auth/spreadsheets']);
 
-const String sheetId = '1QAzPiIC-C6yrLt_50GGB5czH60mFEXIZt9yPSJIKQao';
+const String _mainSheet = '1TjRswZvICftay4ViDpC7Ig-r-ErCUZhXAEMR3gRiR2c';
+const String _testSheet = '1QAzPiIC-C6yrLt_50GGB5czH60mFEXIZt9yPSJIKQao';
+
+const String sheetId = kDebugMode ? _mainSheet : _testSheet;
 const String accessEmail = 'ashish.warty@gmail.com';
 
 const Color primaryColor = Color(0xFF2C3872);
