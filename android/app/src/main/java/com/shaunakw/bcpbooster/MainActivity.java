@@ -1,4 +1,4 @@
-package com.shaunakw.booster_signups;
+package com.shaunakw.bcpbooster;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;
