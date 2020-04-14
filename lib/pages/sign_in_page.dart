@@ -69,16 +69,18 @@ class _SignInPageState extends PageState<SignInPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TitleText('Sign in to access form'),
-        Transform.scale(
-          scale: 1.25,
-          child: GoogleSignInButton(
-            onPressed: googleSignIn.signIn,
+    return Center(
+      child: Column(
+        children: <Widget>[
+          TitleText('Sign in to access form'),
+          Transform.scale(
+            scale: 1.25,
+            child: GoogleSignInButton(
+              onPressed: googleSignIn.signIn,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

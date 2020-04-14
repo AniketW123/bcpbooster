@@ -41,22 +41,24 @@ class _StartPageState extends PageState<StartPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TitleText('Bellarmine Booster Club Signups'),
-        PrimaryButton(
-          text: 'Add New Member',
-          onPressed: () {
-            Navigator.pushNamed(context, ProfileInfoPage.path);
-          },
-        ),
-        PrimaryButton(
-          text: 'Find Member',
-          onPressed: () {
-            Navigator.pushNamed(context, SearchPage.path);
-          },
-        ),
-      ],
+    return Center(
+      child: Column(
+        children: <Widget>[
+          TitleText('Bellarmine Booster Club Signups'),
+          PrimaryButton(
+            text: 'Add New Member',
+            onPressed: () {
+              Navigator.pushNamed(context, ProfileInfoPage.path);
+            },
+          ),
+          PrimaryButton(
+            text: 'Find Member',
+            onPressed: () {
+              Navigator.pushNamed(context, SearchPage.path);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
