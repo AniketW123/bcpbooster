@@ -7,7 +7,7 @@ final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['https://www.googleapis.
 const String _mainSheet = '1TjRswZvICftay4ViDpC7Ig-r-ErCUZhXAEMR3gRiR2c';
 const String _testSheet = '1QAzPiIC-C6yrLt_50GGB5czH60mFEXIZt9yPSJIKQao';
 
-const String sheetId = kDebugMode ? _mainSheet : _testSheet;
+const String sheetId = kDebugMode ? _testSheet : _mainSheet;
 const String accessEmail = 'ashish.warty@gmail.com';
 
 const Color primaryColor = Color(0xFF2C3872);
