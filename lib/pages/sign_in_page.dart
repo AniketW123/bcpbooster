@@ -29,10 +29,14 @@ class _SignInPageState extends PageState<SignInPage> {
     if (res.statusCode == 200) {
       Navigator.pushNamed(context, StartPage.path);
     } else {
+      String errorMessage = res.statusCode == 403
+          ? 'Unfortunately, this account does not have access to the signups spreadsheet (Error 403). Please sign in with a different account or contact $accessEmail to get access.'
+          : 'Error ${res.statusCode}.';
+
       alert(
         context: context,
         title: 'Error!',
-        message: Text('Unfortunately, this account does not have access to the signups spreadsheet (Error ${res.statusCode}). Please sign in with a different account or contact $accessEmail to get access.'),
+        message: Text(errorMessage),
         actions: <Widget>[
           AlertButton(
             'OK',

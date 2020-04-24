@@ -6,7 +6,7 @@ description: An app to log signups for Bellarmine College Prep's Booster Club
 publish_to: 'none'
 
 
-version: 1.0.0+5
+version: 1.0.0+6
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
