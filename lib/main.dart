@@ -13,6 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'BCP Booster Club',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: primaryColor, // Hex: 2C3872

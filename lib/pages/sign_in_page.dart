@@ -77,10 +77,13 @@ class _SignInPageState extends PageState<SignInPage> {
       child: Column(
         children: <Widget>[
           TitleText('Sign in to access form'),
-          Transform.scale(
-            scale: 1.25,
-            child: GoogleSignInButton(
-              onPressed: googleSignIn.signIn,
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Transform.scale(
+              scale: 1.25,
+              child: GoogleSignInButton(
+                onPressed: googleSignIn.signIn,
+              ),
             ),
           ),
         ],
