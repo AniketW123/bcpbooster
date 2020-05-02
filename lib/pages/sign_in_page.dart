@@ -31,7 +31,7 @@ class _SignInPageState extends PageState<SignInPage> {
     } else {
       String errorMessage = res.statusCode == 403
           ? 'Unfortunately, this account does not have access to the signups spreadsheet (Error 403). Please sign in with a different account or contact $accessEmail to get access.'
-          : 'Error ${res.statusCode}.';
+          : 'Error ${res.statusCode}. Try again.';
 
       alert(
         context: context,
