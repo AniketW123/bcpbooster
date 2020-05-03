@@ -43,7 +43,7 @@ class _SignInPageState extends PageState<SignInPage> {
             onPressed: () {
               googleSignIn.disconnect().then((_) => Navigator.pop(context));
             },
-          )
+          ),
         ],
       );
     }
@@ -82,7 +82,10 @@ class _SignInPageState extends PageState<SignInPage> {
             child: Transform.scale(
               scale: 1.25,
               child: GoogleSignInButton(
-                onPressed: googleSignIn.signIn,
+                onPressed: () {
+                  print('Signing in...');
+                  googleSignIn.signIn();
+                },
               ),
             ),
           ),
