@@ -82,10 +82,7 @@ class _SignInPageState extends PageState<SignInPage> {
             child: Transform.scale(
               scale: 1.25,
               child: GoogleSignInButton(
-                onPressed: () {
-                  print('Signing in...');
-                  googleSignIn.signIn();
-                },
+                onPressed: googleSignIn.signIn,
               ),
             ),
           ),
