@@ -1,4 +1,5 @@
 # bcpbooster
+[![Netlify Status](https://api.netlify.com/api/v1/badges/01822946-345c-4be4-9eaf-28d7bcdcaae8/deploy-status)](https://app.netlify.com/sites/bcpbooster/deploys)
 
 An app to log signups for Bellarmine College Prep's Booster Club
 
