@@ -1,6 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'page.dart';
 import 'start_page.dart';
 import 'membership_page.dart';
@@ -69,122 +68,120 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            TextFieldPadding(
-              child: WordsTextField(
-                label: 'First Name',
-                onChanged: (val) {
-                  sheetRow.firstName = val;
-                },
+    return Form(
+      key: _formKey,
+      child: ListView(
+        padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
+        children: <Widget>[
+          TextFieldPadding(
+            child: WordsTextField(
+              label: 'First Name',
+              onChanged: (val) {
+                sheetRow.firstName = val;
+              },
+            ),
+          ),
+          TextFieldPadding(
+            child: WordsTextField(
+              label: 'Last Name',
+              onChanged: (val) {
+                sheetRow.lastName = val;
+              },
+            ),
+          ),
+          TextFieldPadding(
+            child: TextFormField(
+              cursorColor: primaryColor,
+              keyboardType: TextInputType.emailAddress,
+              style: inputStyle,
+              validator: (val) => EmailValidator.validate(val, true) ? null : 'Not a valid email.',
+              decoration: InputDecoration(
+                labelText: 'Email',
               ),
+              onChanged: (val) {
+                sheetRow.email = val;
+              },
             ),
-            TextFieldPadding(
-              child: WordsTextField(
-                label: 'Last Name',
-                onChanged: (val) {
-                  sheetRow.lastName = val;
-                },
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFieldPadding(
+                flex: 2,
+                child: NumberTextField(
+                  label: 'Phone Number',
+                  maxLength: 10,
+                  onChanged: (val) {
+                    sheetRow.phoneNum = val;
+                  },
+                ),
               ),
-            ),
-            TextFieldPadding(
-              child: TextFormField(
-                cursorColor: primaryColor,
-                keyboardType: TextInputType.emailAddress,
-                style: inputStyle,
-                validator: (val) => EmailValidator.validate(val, true) ? null : 'Not a valid email.',
-                decoration: InputDecoration(
-                  labelText: 'Email',
+              TextFieldPadding(
+                flex: 1,
+                child: DropdownTextField(
+                  label: 'Graduation Year',
+                  value: _gradYear,
+                  items: _years,
+                  onChanged: (val) {
+                    setState(() {
+                      _gradYear = val;
+                    });
+                  },
                 ),
-                onChanged: (val) {
-                  sheetRow.email = val;
-                },
               ),
+            ],
+          ),
+          TextFieldPadding(
+            child: WordsTextField(
+              label: 'Address',
+              onChanged: (val) {
+                sheetRow.address = val;
+              },
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextFieldPadding(
-                  flex: 2,
-                  child: NumberTextField(
-                    label: 'Phone Number',
-                    maxLength: 10,
-                    onChanged: (val) {
-                      sheetRow.phoneNum = val;
-                    },
-                  ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFieldPadding(
+                flex: 4,
+                child: WordsTextField(
+                  label: 'City',
+                  onChanged: (val) {
+                    sheetRow.city = val;
+                  },
                 ),
-                TextFieldPadding(
-                  flex: 1,
-                  child: DropdownTextField(
-                    label: 'Graduation Year',
-                    value: _gradYear,
-                    items: _years,
-                    onChanged: (val) {
-                      setState(() {
-                        _gradYear = val;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            TextFieldPadding(
-              child: WordsTextField(
-                label: 'Address',
-                onChanged: (val) {
-                  sheetRow.address = val;
-                },
               ),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextFieldPadding(
-                  flex: 4,
-                  child: WordsTextField(
-                    label: 'City',
-                    onChanged: (val) {
-                      sheetRow.city = val;
-                    },
-                  ),
+              TextFieldPadding(
+                flex: 2,
+                child: DropdownTextField(
+                  label: 'State',
+                  value: _state,
+                  items: _states,
+                  onChanged: (val) {
+                    setState(() {
+                      _state = val;
+                    });
+                  },
                 ),
-                TextFieldPadding(
-                  flex: 2,
-                  child: DropdownTextField(
-                    label: 'State',
-                    value: _state,
-                    items: _states,
-                    onChanged: (val) {
-                      setState(() {
-                        _state = val;
-                      });
-                    },
-                  ),
+              ),
+              TextFieldPadding(
+                flex: 3,
+                child: NumberTextField(
+                  label: 'Zip Code',
+                  maxLength: 5,
+                  onChanged: (val) {
+                    sheetRow.zip = val;
+                  },
                 ),
-                TextFieldPadding(
-                  flex: 3,
-                  child: NumberTextField(
-                    label: 'Zip Code',
-                    maxLength: 5,
-                    onChanged: (val) {
-                      sheetRow.zip = val;
-                    },
-                  ),
-                ),
-              ],
-            ),
-            SubmitButton(
-              state: this,
-              path: MembershipPage.path,
-              condition: () => _formKey.currentState.validate()
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          SubmitButton(
+            state: this,
+            path: MembershipPage.path,
+            condition: () => _formKey.currentState.validate()
+          ),
+        ],
       ),
     );
   }

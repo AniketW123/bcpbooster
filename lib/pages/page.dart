@@ -24,9 +24,7 @@ abstract class PageState<Page extends StatefulWidget> extends State<Page> {
       appBar: buildAppBar(context),
       body: ModalProgressHUD(
         inAsyncCall: _loading,
-        child: SingleChildScrollView(
-          child: buildBody(context),
-        ),
+        child: buildBody(context),
       ),
     );
   }

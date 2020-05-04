@@ -8,6 +8,8 @@ import '../constants.dart';
 import '../util/alert.dart';
 import '../util/text.dart';
 
+// TODO make pages login required
+
 class SignInPage extends StatefulWidget {
   static const String path = '/sign_in';
 
