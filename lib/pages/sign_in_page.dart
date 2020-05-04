@@ -50,8 +50,7 @@ class _SignInPageState extends PageState<SignInPage> {
   }
 
   void _userChanged(GoogleSignInAccount account) {
-    print(account);
-    if (account != null) {
+    if (account?.id != null) {
       _getSheet();
     } else {
       Navigator.popUntil(context, (route) => route.isFirst);
