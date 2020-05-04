@@ -50,6 +50,7 @@ class _SignInPageState extends PageState<SignInPage> {
   }
 
   void _userChanged(GoogleSignInAccount account) {
+    print(account);
     if (account?.id != null) {
       _getSheet();
     } else {
@@ -82,10 +83,7 @@ class _SignInPageState extends PageState<SignInPage> {
             child: Transform.scale(
               scale: 1.25,
               child: GoogleSignInButton(
-                onPressed: () {
-                  print('Signing in...');
-                  googleSignIn.signIn();
-                },
+                onPressed: googleSignIn.signIn,
               ),
             ),
           ),
