@@ -90,36 +90,34 @@ class _SearchPageState extends PageState<SearchPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 15.0),
-      child: Column(
-        children: <Widget>[
-          TextFieldPadding(
-            child: WordsTextField(
-              label: 'First Name',
-              onChanged: (val) {
-                setState(() {
-                  _firstName = val;
-                });
-              },
-            ),
+      children: <Widget>[
+        TextFieldPadding(
+          child: WordsTextField(
+            label: 'First Name',
+            onChanged: (val) {
+              setState(() {
+                _firstName = val;
+              });
+            },
           ),
-          TextFieldPadding(
-            child: WordsTextField(
-              label: 'Last Name',
-              onChanged: (val) {
-                setState(() {
-                  _lastName = val;
-                });
-              },
-            ),
+        ),
+        TextFieldPadding(
+          child: WordsTextField(
+            label: 'Last Name',
+            onChanged: (val) {
+              setState(() {
+                _lastName = val;
+              });
+            },
           ),
-          PrimaryButton(
-            text: 'Search',
-            onPressed: _search,
-          ),
-        ],
-      ),
+        ),
+        PrimaryButton(
+          text: 'Search',
+          onPressed: _search,
+        ),
+      ],
     );
   }
 }

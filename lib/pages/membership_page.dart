@@ -72,56 +72,54 @@ class _MembershipPageState extends PageState<MembershipPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: EdgeInsets.all(15.0),
-      child: Column(
-        children: <Widget>[
-          LabeledInput(
-            title: 'Membership Type',
+      children: <Widget>[
+        LabeledInput(
+          title: 'Membership Type',
+          input: _radioGroup(
+            name: 'membershipType',
+            column: true,
+            titles: ['Premium 4 Year - \$500', 'Deluxe Family - \$225', 'Basic Family - \$130', 'Young Alumni - \$50', 'Contact Info Only'],
+            values: ['Premium 4 Year', 'Deluxe Family', 'Basic Family', 'Young Alumni', 'Contact Info Only'],
+          ),
+        ),
+        Visibility(
+          visible: _radioInputs['membershipType'] != 'Contact Info Only',
+          child: LabeledInput(
+            title: 'Jacket Style',
             input: _radioGroup(
-              name: 'membershipType',
-              column: true,
-              titles: ['Premium 4 Year - \$500', 'Deluxe Family - \$225', 'Basic Family - \$130', 'Young Alumni - \$50', 'Contact Info Only'],
-              values: ['Premium 4 Year', 'Deluxe Family', 'Basic Family', 'Young Alumni', 'Contact Info Only'],
+              name: 'jacketStyle',
+              values: ['Male', 'Female'],
             ),
           ),
-          Visibility(
-            visible: _radioInputs['membershipType'] != 'Contact Info Only',
-            child: LabeledInput(
-              title: 'Jacket Style',
-              input: _radioGroup(
-                name: 'jacketStyle',
-                values: ['Male', 'Female'],
-              ),
+        ),
+        Visibility(
+          visible: _radioInputs['membershipType'] != 'Contact Info Only',
+          child: LabeledInput(
+            title: 'Jacket Size',
+            input: _radioGroup(
+              name: 'jacketSize',
+              values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
             ),
           ),
-          Visibility(
-            visible: _radioInputs['membershipType'] != 'Contact Info Only',
-            child: LabeledInput(
-              title: 'Jacket Size',
-              input: _radioGroup(
-                name: 'jacketSize',
-                values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
-              ),
+        ),
+        Visibility(
+          visible: _radioInputs['membershipType'] != 'Contact Info Only',
+          child: LabeledInput(
+            title: 'Sports Program Format',
+            input: _radioGroup(
+              name: 'sportsFormat',
+              values: ['Digital', 'Printed']
             ),
           ),
-          Visibility(
-            visible: _radioInputs['membershipType'] != 'Contact Info Only',
-            child: LabeledInput(
-              title: 'Sports Program Format',
-              input: _radioGroup(
-                name: 'sportsFormat',
-                values: ['Digital', 'Printed']
-              ),
-            ),
-          ),
-          SubmitButton(
-            state: this,
-            done: _radioInputs['membershipType'] == 'Contact Info Only',
-            path: MiscPage.path,
-          ),
-        ],
-      ),
+        ),
+        SubmitButton(
+          state: this,
+          done: _radioInputs['membershipType'] == 'Contact Info Only',
+          path: MiscPage.path,
+        ),
+      ],
     );
   }
 }

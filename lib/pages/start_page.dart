@@ -42,7 +42,7 @@ class _StartPageState extends PageState<StartPage> {
   @override
   Widget buildBody(BuildContext context) {
     return Center(
-      child: Column(
+      child: ListView(
         children: <Widget>[
           TitleText('Bellarmine Booster Club Signups'),
           PrimaryButton(

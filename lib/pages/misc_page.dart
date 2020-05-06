@@ -36,71 +36,69 @@ class _MiscPageState extends PageState<MiscPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: EdgeInsets.all(15.0),
-      child: Column(
-        children: <Widget>[
-          LabeledInput(
-            title: 'Cap picked up?',
-            input: Checkbox(
-              value: _capPickedUp,
-              onChanged: (val) {
-                setState(() {
-                  _capPickedUp = val;
-                });
-              },
-            ),
+      children: <Widget>[
+        LabeledInput(
+          title: 'Cap picked up?',
+          input: Checkbox(
+            value: _capPickedUp,
+            onChanged: (val) {
+              setState(() {
+                _capPickedUp = val;
+              });
+            },
           ),
-          LabeledInput(
-            title: 'Jacket picked up?',
-            input: Checkbox(
-              value: _jacketPickedUp,
-              onChanged: (val) {
-                setState(() {
-                  _jacketPickedUp = val;
-                });
-              },
-            ),
+        ),
+        LabeledInput(
+          title: 'Jacket picked up?',
+          input: Checkbox(
+            value: _jacketPickedUp,
+            onChanged: (val) {
+              setState(() {
+                _jacketPickedUp = val;
+              });
+            },
           ),
-          LabeledInput(
-            title: 'Payment Confirmed?',
-            input: Checkbox(
-              value: _paymentConfirmed,
-              onChanged: (val) {
-                setState(() {
-                  _paymentConfirmed = val;
-                });
-              },
-            ),
+        ),
+        LabeledInput(
+          title: 'Payment Confirmed?',
+          input: Checkbox(
+            value: _paymentConfirmed,
+            onChanged: (val) {
+              setState(() {
+                _paymentConfirmed = val;
+              });
+            },
           ),
-          LabeledInput(
-            title: 'Are you interested in joining the Dad\'s Club board?',
-            input: Checkbox(
-              value: _boardInterest,
-              onChanged: (val) {
-                setState(() {
-                  _boardInterest = val;
-                });
-              },
-            ),
+        ),
+        LabeledInput(
+          title: 'Are you interested in joining the Dad\'s Club board?',
+          input: Checkbox(
+            value: _boardInterest,
+            onChanged: (val) {
+              setState(() {
+                _boardInterest = val;
+              });
+            },
           ),
-          LabeledInput(
-            title: 'Are you interested in volunteering at Bellarmine events?',
-            input: Checkbox(
-              value: _volunteerInterest,
-              onChanged: (val) {
-                setState(() {
-                  _volunteerInterest = val;
-                });
-              },
-            ),
+        ),
+        LabeledInput(
+          title: 'Are you interested in volunteering at Bellarmine events?',
+          input: Checkbox(
+            value: _volunteerInterest,
+            onChanged: (val) {
+              setState(() {
+                _volunteerInterest = val;
+              });
+            },
           ),
-          SubmitButton(
-            state: this,
-            done: true
-          ),
-        ],
-      ),
+        ),
+        SubmitButton(
+          state: this,
+          done: true
+        ),
+      ],
     );
   }
 }
