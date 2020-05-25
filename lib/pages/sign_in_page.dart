@@ -77,7 +77,7 @@ class _SignInPageState extends PageState<SignInPage> {
   @override
   Widget buildBody(BuildContext context) {
     return Center(
-      child: ListView(
+      child: Column(
         children: <Widget>[
           TitleText('Sign in to access form'),
           Padding(
