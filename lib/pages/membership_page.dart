@@ -48,8 +48,11 @@ class _MembershipPageState extends PageState<MembershipPage> {
     return column ? Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: list,
-    ) : Row(
-      children: list,
+    ) : Expanded(
+      child: Wrap(
+        alignment: WrapAlignment.end,
+        children: list,
+      ),
     );
   }
 

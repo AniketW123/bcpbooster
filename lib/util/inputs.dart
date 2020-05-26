@@ -15,6 +15,7 @@ class LabeledInput extends StatelessWidget {
       padding: isChoice ? const EdgeInsets.all(0.0) : const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: isChoice ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
