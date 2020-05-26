@@ -90,6 +90,7 @@ class _SignInPageState extends PageState<SignInPage> {
   @override
   Widget buildBody(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.0),
