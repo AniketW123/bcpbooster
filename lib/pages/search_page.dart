@@ -83,6 +83,7 @@ class _SearchPageState extends PageState<SearchPage> {
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('Member Search'),
+      actions: [icon],
     );
   }
 

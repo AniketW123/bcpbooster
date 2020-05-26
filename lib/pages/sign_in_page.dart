@@ -82,6 +82,7 @@ class _SignInPageState extends PageState<SignInPage> {
   @override
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
+      actions: [icon],
     );
   }
 

@@ -60,6 +60,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           );
         },
       ),
+      actions: [icon],
     );
   }
 

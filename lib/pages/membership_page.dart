@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
 import 'misc_page.dart';
+import '../constants.dart';
 import '../sheet_row.dart';
 import '../util/buttons.dart';
 import '../util/inputs.dart';
@@ -68,6 +69,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('Membership Details'),
+      actions: [icon],
     );
   }
 

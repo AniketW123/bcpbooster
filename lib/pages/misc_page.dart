@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'page.dart';
+import '../constants.dart';
 import '../sheet_row.dart';
 import '../util/buttons.dart';
 import '../util/inputs.dart';
@@ -29,6 +30,7 @@ class _MiscPageState extends PageState<MiscPage> {
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('Miscellaneous'),
+      actions: [icon],
     );
   }
 

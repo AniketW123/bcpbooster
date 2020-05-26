@@ -34,6 +34,7 @@ class _StartPageState extends PageState<StartPage> {
           );
         },
       ),
+      actions: [icon],
     );
   }
 

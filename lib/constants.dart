@@ -13,6 +13,8 @@ const String accessEmail = 'ashish.warty@gmail.com';
 const Color primaryColor = Color(0xFF2C3872);
 const Color backgroundColor = Color(0xFFABBAF2);
 
+final Widget icon = Image.network('/icons/android-icon-192x192.png', width: 40);
+
 const TextStyle inputStyle = TextStyle(
   fontFamily: 'Avenir Next',
   fontSize: 18.0,
