@@ -8,8 +8,6 @@ import '../util/buttons.dart';
 import '../util/text.dart';
 
 class StartPage extends StatefulWidget {
-  static const String path = '/start';
-
   @override
   _StartPageState createState() => _StartPageState();
 }
@@ -48,13 +46,25 @@ class _StartPageState extends PageState<StartPage> {
           PrimaryButton(
             text: 'Add New Member',
             onPressed: () {
-              Navigator.pushNamed(context, ProfileInfoPage.path);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ProfileInfoPage(),
+                  settings: RouteSettings(name: '/profile'),
+                ),
+              );
             },
           ),
           PrimaryButton(
             text: 'Find Member',
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.path);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SearchPage(),
+                  settings: RouteSettings(name: '/search'),
+                ),
+              );
             },
           ),
         ],

@@ -13,8 +13,6 @@ final List<Widget> _alertActions = [
 ];
 
 class SearchPage extends StatefulWidget {
-  static const String path = '/search';
-
   @override
   _SearchPageState createState() => _SearchPageState();
 }

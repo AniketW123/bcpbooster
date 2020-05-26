@@ -6,8 +6,6 @@ import '../util/buttons.dart';
 import '../util/inputs.dart';
 
 class MembershipPage extends StatefulWidget {
-  static const String path = '/membership';
-
   @override
   _MembershipPageState createState() => _MembershipPageState();
 }
@@ -117,7 +115,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
         SubmitButton(
           state: this,
           done: _radioInputs['membershipType'] == 'Contact Info Only',
-          path: MiscPage.path,
+          routeBuilder: (_) => MiscPage(),
         ),
       ],
     );

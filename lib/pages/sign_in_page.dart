@@ -11,8 +11,6 @@ import '../util/text.dart';
 // TODO make pages login required
 
 class SignInPage extends StatefulWidget {
-  static const String path = '/sign_in';
-
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -29,7 +27,13 @@ class _SignInPageState extends PageState<SignInPage> {
     stopLoading();
 
     if (res.statusCode == 200) {
-      Navigator.pushNamed(context, StartPage.path);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => StartPage(),
+          settings: RouteSettings(name: '/start')
+        ),
+      );
     } else {
       String errorMessage = res.statusCode == 403
           ? 'Unfortunately, this account does not have access to the signups spreadsheet (Error 403). Please sign in with a different account or contact $accessEmail to get access.'

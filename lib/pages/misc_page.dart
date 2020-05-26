@@ -5,8 +5,6 @@ import '../util/buttons.dart';
 import '../util/inputs.dart';
 
 class MiscPage extends StatefulWidget {
-  static const String path = '/misc';
-
   @override
   _MiscPageState createState() => _MiscPageState();
 }

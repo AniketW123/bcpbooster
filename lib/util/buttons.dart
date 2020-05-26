@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'alert.dart';
 import '../pages/page.dart';
-import '../pages/start_page.dart';
-import '../pages/profile_info_page.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
 
@@ -40,11 +38,11 @@ class PrimaryButton extends StatelessWidget {
 
 class SubmitButton extends StatelessWidget {
   final bool done;
-  final String path;
+  final WidgetBuilder routeBuilder;
   final PageState state;
   final bool Function() condition;
 
-  SubmitButton({this.done = false, this.path, @required this.state, this.condition}) : assert(done || path != null);
+  SubmitButton({this.done = false, this.routeBuilder, @required this.state, this.condition}) : assert(done || routeBuilder != null);
 
   void _confirm(BuildContext context) {
     List<Text> message = [
@@ -82,7 +80,7 @@ class SubmitButton extends StatelessWidget {
           AlertButton(
             'Edit',
             onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName(ProfileInfoPage.path));
+              Navigator.popUntil(context, ModalRoute.withName('/profile'));
             },
           ),
           AlertButton(
@@ -120,7 +118,7 @@ class SubmitButton extends StatelessWidget {
             'OK',
             onPressed: () {
               sheetRow = SheetRow();
-              Navigator.popUntil(context, ModalRoute.withName(StartPage.path));
+              Navigator.popUntil(context, ModalRoute.withName('/start'));
             },
           )
         ],
@@ -138,7 +136,9 @@ class SubmitButton extends StatelessWidget {
           if (done) {
             _confirm(context);
           } else {
-            Navigator.pushNamed(context, path);
+            Navigator.push(context, MaterialPageRoute(
+              builder: routeBuilder
+            ));
           }
         }
       },

@@ -1,7 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'page.dart';
-import 'start_page.dart';
 import 'membership_page.dart';
 import '../constants.dart';
 import '../sheet_row.dart';
@@ -20,8 +19,6 @@ final List<String> _years = [_currYear, _currYear + 1, _currYear + 2, _currYear 
     .map((e) => e.toString()).toList();
 
 class ProfileInfoPage extends StatefulWidget {
-  static const String path = '/profile_info';
-
   @override
   _ProfileInfoPageState createState() => _ProfileInfoPageState();
 }
@@ -56,7 +53,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 textColor: Colors.red.shade700,
                 onPressed: () {
                   sheetRow = SheetRow();
-                  Navigator.popUntil(context, ModalRoute.withName(StartPage.path));
+                  Navigator.popUntil(context, ModalRoute.withName('/start'));
                 },
               ),
             ],
@@ -178,7 +175,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           ),
           SubmitButton(
             state: this,
-            path: MembershipPage.path,
+            routeBuilder: (_) => MembershipPage(),
             condition: () => _formKey.currentState.validate()
           ),
         ],
