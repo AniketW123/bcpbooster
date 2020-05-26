@@ -39,35 +39,38 @@ class _StartPageState extends PageState<StartPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          TitleText('Bellarmine Booster Club Signups'),
-          PrimaryButton(
-            text: 'Add New Member',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ProfileInfoPage(),
-                  settings: RouteSettings(name: '/profile'),
-                ),
-              );
-            },
-          ),
-          PrimaryButton(
-            text: 'Find Member',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => SearchPage(),
-                  settings: RouteSettings(name: '/search'),
-                ),
-              );
-            },
-          ),
-        ],
+    return Padding(
+      padding: EdgeInsets.all(50.0),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            TitleText('Bellarmine Booster Club Signups'),
+            PrimaryButton(
+              text: 'Add New Member',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ProfileInfoPage(),
+                    settings: RouteSettings(name: '/profile'),
+                  ),
+                );
+              },
+            ),
+            PrimaryButton(
+              text: 'Find Member',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SearchPage(),
+                    settings: RouteSettings(name: '/search'),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

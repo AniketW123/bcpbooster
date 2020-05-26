@@ -8,7 +8,7 @@ class TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 100.0, horizontal: 50.0),
+      padding: EdgeInsets.symmetric(vertical: 100.0),
       child: Text(
         title,
         textAlign: TextAlign.center,

@@ -8,8 +8,6 @@ import '../constants.dart';
 import '../util/alert.dart';
 import '../util/text.dart';
 
-// TODO make pages login required
-
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -64,6 +62,16 @@ class _SignInPageState extends PageState<SignInPage> {
     }
   }
 
+  Text _bodyText(List<String> text) {
+    return Text(
+      text.join(' '),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 18.0
+      ),
+    );
+  }
+
   @override
   void initState() {
     googleSignIn.onCurrentUserChanged.listen(_userChanged);
@@ -74,26 +82,37 @@ class _SignInPageState extends PageState<SignInPage> {
   @override
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text('Sign In'),
     );
   }
 
   @override
   Widget buildBody(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          TitleText('Sign in to access form'),
-          Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: Transform.scale(
-              scale: 1.25,
-              child: GoogleSignInButton(
-                onPressed: googleSignIn.signIn,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 50.0),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            TitleText('BCP Booster Club'),
+            _bodyText([
+              'A center for managing members for Bellarmine College Prep\'s Booster Club Program.',
+              'The Booster Club is a great way to get free tickets to sporting events and BCP merchandise.',
+              'Booster Club volunteers can use this website to add new members and search for/update the status of existing members'
+            ]),
+            Padding(
+              padding: EdgeInsets.only(top: 50.0, bottom: 20.0),
+              child: Text(
+                'Volunteer Login',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w600
+                ),
               ),
             ),
-          ),
-        ],
+            GoogleSignInButton(
+              onPressed: googleSignIn.signIn,
+            ),
+          ],
+        ),
       ),
     );
   }
