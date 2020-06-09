@@ -159,7 +159,6 @@ class _HomePageState extends PageState<HomePage> {
                         child: _bodyText([
                           'Bellarmine Boosters provides financial support to the school\'s athletics program.',
                           'Funds raised through the Booster Club benefit Bellarmine\'s annual athletics budget and assist in funding school projects through which student athletes benefit.',
-                          'More information on membership details visit: https://wwe.bcp.org/parents/dads-club/booster-club/index.aspx',
                         ]),
                       ),
                     ),
@@ -202,9 +201,24 @@ class _HomePageState extends PageState<HomePage> {
           bottom: 0.0,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
-            child: _link(
-              'Privacy Policy',
-              url: 'https://booster.belldcb.com/privacy',
+            child: Row(
+              children: [
+                _link(
+                  'Privacy Policy',
+                  url: 'https://booster.belldcb.com/privacy',
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: _link(
+                    'Contact Us',
+                    url: 'mailto:bcp-dads-club-board@googlegroups.com',
+                  ),
+                ),
+                _link(
+                  'Feedback',
+                  url: 'mailto:shaunak.warty@gmail.com?subject=BCP Booster Club Website Feedback',
+                ),
+              ],
             )
           ),
         )
