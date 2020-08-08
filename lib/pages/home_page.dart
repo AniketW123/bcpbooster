@@ -7,7 +7,6 @@ import 'sign_in_page.dart';
 import 'start_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
-import '../util/text.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -47,8 +46,9 @@ class _HomePageState extends PageState<HomePage> {
         actions: <Widget>[
           AlertButton(
             'OK',
-            onPressed: () {
-              googleSignIn.disconnect().then((_) => Navigator.pop(context));
+            onPressed: () async {
+              await googleSignIn.disconnect();
+              Navigator.pop(context);
             },
           ),
         ],
@@ -65,32 +65,37 @@ class _HomePageState extends PageState<HomePage> {
     }
   }
 
-  Text _bodyText(List<String> text, {bool center = false}) {
-    return Text(
-      text.join(' '),
-      textAlign: center ? TextAlign.center : null,
-      style: TextStyle(
-        fontSize: 18.0
+  Widget _bodyText(List<String> text) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Text(
+        text.join(' '),
+        style: TextStyle(
+          fontSize: 18.0
+        ),
       ),
     );
   }
   
-  GestureDetector _link(String text, {String url}) {
-    return GestureDetector(
-      child: Text(
-        text,
-        style: TextStyle(
-          decoration: TextDecoration.underline
+  Widget _link(String text, {String url}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 4.0),
+      child: GestureDetector(
+        child: Text(
+          text,
+          style: TextStyle(
+            decoration: TextDecoration.underline
+          ),
         ),
+        onTap: () {
+          launch(url);
+        },
       ),
-      onTap: () {
-        launch(url);
-      },
     );
   }
 
-  Padding _expansionHeader(String title) {
-    return Padding(
+  Widget Function(BuildContext, bool) _expansionHeaderBuilder(String title) {
+    return (_, isExpanded) => Padding(
       padding: EdgeInsets.all(16.0),
       child: Text(
         title,
@@ -146,45 +151,42 @@ class _HomePageState extends PageState<HomePage> {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 50.0),
-                  child: _bodyText(['A center for managing members for Bellarmine College Prep\'s Booster Club Program, organized by the Dad\'s Club.'], center: true),
+                  child: Text(
+                    'A center for managing members for Bellarmine College Prep\'s Booster Club Program, organized by the Dad\'s Club.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18.0
+                    ),
+                  ),
                 ),
                 ExpansionPanelList(
                   expandedHeaderPadding: EdgeInsets.zero,
                   children: [
                     ExpansionPanel(
                       isExpanded: expanded[0],
-                      headerBuilder: (_, isExpanded) => _expansionHeader('What is the Booster Club?'),
-                      body: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: _bodyText([
-                          'Bellarmine Boosters provides financial support to the school\'s athletics program.',
-                          'Funds raised through the Booster Club benefit Bellarmine\'s annual athletics budget and assist in funding school projects through which student athletes benefit.',
-                        ]),
-                      ),
+                      headerBuilder: _expansionHeaderBuilder('What is the Booster Club?'),
+                      body: _bodyText([
+                        'Bellarmine Boosters provides financial support to the school\'s athletics program.',
+                        'Funds raised through the Booster Club benefit Bellarmine\'s annual athletics budget and assist in funding school projects through which student athletes benefit.',
+                      ]),
                     ),
                     ExpansionPanel(
                       isExpanded: expanded[1],
-                      headerBuilder: (_, isExpanded) => _expansionHeader('What is the Dad\'s Club?'),
-                      body: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: _bodyText([
-                          'The Bellarmine Dad\'s Club is a volunteer organization that provides opportunities for fathers to bond with their sons while modeling what it means to be “Men for and with Others.”',
-                          'Through event and program leadership, direct volunteering, fundraising, and sponsorship, we support campus events, community outreach projects, student mentoring and athletic programs.',
-                          'The Dads’ Club is composed of all Bellarmine dads and is led by the 40-member Dad\'s Club Board.',
-                        ]),
-                      ),
+                      headerBuilder: _expansionHeaderBuilder('What is the Dad\'s Club?'),
+                      body: _bodyText([
+                        'The Bellarmine Dad\'s Club is a volunteer organization that provides opportunities for fathers to bond with their sons while modeling what it means to be “Men for and with Others.”',
+                        'Through event and program leadership, direct volunteering, fundraising, and sponsorship, we support campus events, community outreach projects, student mentoring and athletic programs.',
+                        'The Dads’ Club is composed of all Bellarmine dads and is led by the 40-member Dad\'s Club Board.',
+                      ]),
                     ),
                     ExpansionPanel(
                       isExpanded: expanded[2],
-                      headerBuilder: (_, isExpanded) => _expansionHeader('Using this website'),
-                      body: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: _bodyText([
-                          'Parent volunteers that are authorized by the Dad’s Club Board can use the above login button to authenticate and help add/manage Booster Club members.',
-                          'Authentication using your Google account is purely needed to access the central spreadsheet (this website won\'t access any of your Gmail or Google Drive data).',
-                          'Once logged in, you will have the option to either search for existing members or add a new member.',
-                        ]),
-                      ),
+                      headerBuilder: _expansionHeaderBuilder('Using this website'),
+                      body: _bodyText([
+                        'Parent volunteers that are authorized by the Dad’s Club Board can use the above login button to authenticate and help add/manage Booster Club members.',
+                        'Authentication using your Google account is purely needed to access the central spreadsheet (this website won\'t access any of your Gmail or Google Drive data).',
+                        'Once logged in, you will have the option to either search for existing members or add a new member.',
+                      ]),
                     ),
                   ],
                   expansionCallback: (index, isExpanded) {
@@ -207,12 +209,9 @@ class _HomePageState extends PageState<HomePage> {
                   'Privacy Policy',
                   url: 'https://booster.belldcb.com/privacy',
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: _link(
-                    'Contact Us',
-                    url: 'mailto:bcp-dads-club-board@googlegroups.com',
-                  ),
+                _link(
+                  'Contact Us',
+                  url: 'mailto:bcp-dads-club-board@googlegroups.com',
                 ),
                 _link(
                   'Feedback',
