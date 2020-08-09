@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'page.dart';
+import 'search_info_page.dart';
 import '../constants.dart';
 import '../util/alert.dart';
 import '../util/buttons.dart';
 import '../util/inputs.dart';
 
-const String _listId = '1wXQorTKCTlWZqsaYFLPhOCTVA7gy9HwKSmin6QEUzJc';
 final List<Widget> _alertActions = [
   AlertButton('OK'),
 ];
@@ -35,7 +35,7 @@ class _SearchPageState extends PageState<SearchPage> {
     startLoading();
 
     http.Response res = await http.get(
-      'https://sheets.googleapis.com/v4/spreadsheets/$_listId/values/C2:D',
+      'https://sheets.googleapis.com/v4/spreadsheets/$searchSheetId/values/C2:D',
       headers: await googleSignIn.currentUser.authHeaders,
     );
 
@@ -66,7 +66,27 @@ class _SearchPageState extends PageState<SearchPage> {
       alert(
         context: context,
         title: 'Match Found',
-        message: Text('The following members match your query: \n\n${names.map((name) => name.join(' ')).join('\n')}'),
+        message: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('The following members match your query. Click a name to edit that person\'s status.'),
+            ...List.generate(names.length, (i) {
+              String name = '${names.elementAt(i)[0]} ${names.elementAt(i)[1]}';
+              return FlatButton(
+                child: Text(name),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => SearchInfoPage(name: name, row: i + 2),
+                    ),
+                  );
+                },
+              );
+            }),
+          ],
+        ),
         actions: _alertActions,
       );
     } else {
