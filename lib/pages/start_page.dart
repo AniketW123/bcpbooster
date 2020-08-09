@@ -43,7 +43,7 @@ class _StartPageState extends PageState<StartPage> {
     return Padding(
       padding: EdgeInsets.all(50.0),
       child: Center(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             TitleText('Bellarmine Booster Club Signups'),
             PrimaryButton(
