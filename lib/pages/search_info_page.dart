@@ -57,7 +57,7 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
     List<Widget> list = [];
     for (int i = 0; i < values.length; i++) {
       list.add(Padding(
-        padding: EdgeInsets.only(left: 20.0),
+        padding: EdgeInsets.only(left: 10.0),
         child: LabeledInput(
           title: values[i],
           isChoice: true,
