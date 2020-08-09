@@ -69,28 +69,28 @@ class SubmitButton extends StatelessWidget {
     }
 
     alert(
-        context: context,
-        title: 'Are you sure you are done?',
-        message: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: message,
+      context: context,
+      title: 'Are you sure you are done?',
+      message: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: message,
+      ),
+      actions: [
+        AlertButton(
+          'Edit',
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName('/profile'));
+          },
         ),
-        actions: [
-          AlertButton(
-            'Edit',
-            onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName('/profile'));
-            },
-          ),
-          AlertButton(
-            'Confirm',
-            onPressed: () {
-              Navigator.pop(context);
-              _submit(context);
-            },
-          ),
-        ]
+        AlertButton(
+          'Confirm',
+          onPressed: () {
+            Navigator.pop(context);
+            _submit(context);
+          },
+        ),
+      ]
     );
   }
 
