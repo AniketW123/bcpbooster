@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:bcpbooster/util/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'page.dart';
 import '../constants.dart';
+import '../util/buttons.dart';
 import '../util/inputs.dart';
 
 class SearchInfoPage extends StatefulWidget {
@@ -53,6 +53,31 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
     }
   }
 
+  Widget _radioGroup({List<String> values, String groupValue, ValueChanged<String> onChanged}) {
+    List<Widget> list = [];
+    for (int i = 0; i < values.length; i++) {
+      list.add(Padding(
+        padding: EdgeInsets.only(left: 20.0),
+        child: LabeledInput(
+          title: values[i],
+          isChoice: true,
+          input: Radio(
+            value: values[i],
+            groupValue: groupValue,
+            onChanged: onChanged,
+          ),
+        ),
+      ));
+    }
+
+    return Expanded(
+      child: Wrap(
+        alignment: WrapAlignment.end,
+        children: list,
+      ),
+    );
+  }
+
   @override
   void initState() {
     _getRow();
@@ -74,9 +99,26 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
       children: row == null ? [] : [
         LabeledInput(
           title: 'Jacket Style',
-          input: Text(
-            '${row[6]} ${row[7]}',
-            style: inputStyle,
+          input: _radioGroup(
+            values: ['Male', 'Female'],
+            groupValue: row[6],
+            onChanged: (val) {
+              setState(() {
+                row[6] = val;
+              });
+            }
+          ),
+        ),
+        LabeledInput(
+          title: 'Jacket Size',
+          input: _radioGroup(
+            values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+            groupValue: row[7],
+            onChanged: (val) {
+              setState(() {
+                row[7] = val;
+              });
+            }
           ),
         ),
         LabeledInput(
