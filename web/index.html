@@ -29,5 +29,25 @@
 </head>
 <body>
   <script src="main.dart.js" type="application/javascript"></script>
+
+  <!-- Firebase JS SDK -->
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCssrrAX-oxeSvGVg9_pWHb6y0KuGZB7R0",
+      authDomain: "bcpbooster.firebaseapp.com",
+      databaseURL: "https://bcpbooster.firebaseio.com",
+      projectId: "bcpbooster",
+      storageBucket: "bcpbooster.appspot.com",
+      messagingSenderId: "288409544617",
+      appId: "1:288409544617:web:d7c4d86b78a3598a4d86b8",
+      measurementId: "G-ZZW7LN0X5K"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 </body>
 </html>
