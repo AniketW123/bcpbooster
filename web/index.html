@@ -28,8 +28,6 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <script src="main.dart.js" type="application/javascript"></script>
-
   <!-- Firebase JS SDK -->
   <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js"></script>
@@ -45,9 +43,10 @@
       appId: "1:288409544617:web:d7c4d86b78a3598a4d86b8",
       measurementId: "G-ZZW7LN0X5K"
     };
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   </script>
+
+  <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
