@@ -11,8 +11,6 @@ void alert({@required BuildContext context, @required String title, Widget messa
       ),
       content: message,
       actions: actions,
-      actionsPadding: EdgeInsets.only(right: 10.0),
-      buttonPadding: EdgeInsets.only(bottom: 10.0, left: 10.0),
     )
   );
 }
