@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'pages/home_page.dart';
@@ -16,6 +18,9 @@ class App extends StatelessWidget {
         fontFamily: 'Avenir Next'
       ),
       home: HomePage(),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
     );
   }
 }
