@@ -29,7 +29,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
     List<Widget> list = [];
     for (int i = 0; i < titles.length; i++) {
       list.add(Padding(
-        padding: EdgeInsets.only(left: 20.0),
+        padding: EdgeInsets.only(left: 10.0),
         child: LabeledInput(
           title: titles[i],
           isChoice: true,
