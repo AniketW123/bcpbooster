@@ -18,8 +18,9 @@ class LabeledInput extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: isChoice ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            constraints: isChoice ? null : BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 3 / 4),
             child: Text(
               title,
               style: inputStyle.copyWith(fontWeight: isChoice ? FontWeight.w400 : FontWeight.w600),
