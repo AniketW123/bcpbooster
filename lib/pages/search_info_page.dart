@@ -124,10 +124,10 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
         LabeledInput(
           title: 'Jacket picked up?',
           input: Checkbox(
-            value: row[jacketIndex] == 'Y',
+            value: row[jacketIndex] == 'YES',
             onChanged: (val) {
               setState(() {
-                row[jacketIndex] = val ? 'Y' : 'N';
+                row[jacketIndex] = val ? 'YES' : 'NO';
               });
             },
           ),
