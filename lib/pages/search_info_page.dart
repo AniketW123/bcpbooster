@@ -98,55 +98,73 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
       padding: EdgeInsets.all(15.0),
       children: row == null ? [] : [
         LabeledInput(
-          title: 'Jacket Style',
-          input: _radioGroup(
-            values: ['Male', 'Female'],
-            groupValue: row[6],
-            onChanged: (val) {
-              setState(() {
-                row[6] = val;
-              });
-            }
+          title: 'Membership',
+          input: Text(row[5]),
+        ),
+        if (row[5] != 'Contact Info Only') ...[
+          LabeledInput(
+            title: 'Jacket Style',
+            input: _radioGroup(
+                values: ['Male', 'Female'],
+                groupValue: row[6],
+                onChanged: (val) {
+                  setState(() {
+                    row[6] = val;
+                  });
+                }
+            ),
           ),
-        ),
-        LabeledInput(
-          title: 'Jacket Size',
-          input: _radioGroup(
-            values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            groupValue: row[7],
-            onChanged: (val) {
-              setState(() {
-                row[7] = val;
-              });
-            }
+          LabeledInput(
+            title: 'Jacket Style',
+            input: _radioGroup(
+                values: ['Male', 'Female'],
+                groupValue: row[6],
+                onChanged: (val) {
+                  setState(() {
+                    row[6] = val;
+                  });
+                }
+            ),
           ),
-        ),
-        LabeledInput(
-          title: 'Jacket picked up?',
-          input: Checkbox(
-            value: row[jacketIndex] == 'YES',
-            onChanged: (val) {
-              setState(() {
-                row[jacketIndex] = val ? 'YES' : 'NO';
-              });
-            },
+          LabeledInput(
+            title: 'Jacket Size',
+            input: _radioGroup(
+              values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+              groupValue: row[7],
+              onChanged: (val) {
+                setState(() {
+                  row[7] = val;
+                });
+              }
+            ),
           ),
-        ),
-        LabeledInput(
-          title: 'Cap picked up?',
-          input: Checkbox(
-            value: row[capIndex] == 'YES',
-            onChanged: (val) {
-              setState(() {
-                row[capIndex] = val ? 'YES' : 'NO';
-              });
-            },
+          LabeledInput(
+            title: 'Jacket picked up?',
+            input: Checkbox(
+              value: row[jacketIndex] == 'YES',
+              onChanged: (val) {
+                setState(() {
+                  row[jacketIndex] = val ? 'YES' : 'NO';
+                });
+              },
+            ),
           ),
-        ),
-        PrimaryButton(
-          text: 'Save',
-          onPressed: _save,
-        ),
+          LabeledInput(
+            title: 'Cap picked up?',
+            input: Checkbox(
+              value: row[capIndex] == 'YES',
+              onChanged: (val) {
+                setState(() {
+                  row[capIndex] = val ? 'YES' : 'NO';
+                });
+              },
+            ),
+          ),
+          PrimaryButton(
+            text: 'Save',
+            onPressed: _save,
+          ),
+        ],
       ],
     );
   }
