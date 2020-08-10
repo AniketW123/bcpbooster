@@ -73,7 +73,7 @@ class _MiscPageState extends PageState<MiscPage> {
           ),
         ),
         LabeledInput(
-          title: 'Are you interested in joining the Dad\'s Club board?',
+          title: 'Interested in joining the Dad\'s Club board?',
           input: Checkbox(
             value: _boardInterest,
             onChanged: (val) {
@@ -84,7 +84,7 @@ class _MiscPageState extends PageState<MiscPage> {
           ),
         ),
         LabeledInput(
-          title: 'Are you interested in volunteering at Bellarmine events?',
+          title: 'Interested in volunteering at Bellarmine events?',
           input: Checkbox(
             value: _volunteerInterest,
             onChanged: (val) {

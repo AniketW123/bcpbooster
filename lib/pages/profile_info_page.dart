@@ -150,7 +150,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                 ),
               ),
               TextFieldPadding(
-                flex: 2,
+                flex: 3,
                 child: DropdownTextField(
                   label: 'State',
                   value: _state,

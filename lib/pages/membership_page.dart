@@ -79,7 +79,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
       padding: EdgeInsets.all(15.0),
       children: <Widget>[
         LabeledInput(
-          title: 'Membership Type',
+          title: 'Membership',
           input: _radioGroup(
             name: 'membershipType',
             column: true,
