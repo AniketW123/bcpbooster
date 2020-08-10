@@ -99,9 +99,12 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
       children: row == null ? [] : [
         LabeledInput(
           title: 'Membership',
-          input: Text(
-            row[5],
-            style: inputStyle,
+          input: Padding(
+            padding: EdgeInsets.symmetric(vertical: 14.0),
+            child: Text(
+              row[5],
+              style: inputStyle,
+            ),
           ),
         ),
         if (row[5] != 'Contact Info Only') ...[
