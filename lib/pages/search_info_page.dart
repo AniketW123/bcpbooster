@@ -99,21 +99,12 @@ class _SearchInfoPageState extends PageState<SearchInfoPage> {
       children: row == null ? [] : [
         LabeledInput(
           title: 'Membership',
-          input: Text(row[5]),
+          input: Text(
+            row[5],
+            style: inputStyle,
+          ),
         ),
         if (row[5] != 'Contact Info Only') ...[
-          LabeledInput(
-            title: 'Jacket Style',
-            input: _radioGroup(
-                values: ['Male', 'Female'],
-                groupValue: row[6],
-                onChanged: (val) {
-                  setState(() {
-                    row[6] = val;
-                  });
-                }
-            ),
-          ),
           LabeledInput(
             title: 'Jacket Style',
             input: _radioGroup(
