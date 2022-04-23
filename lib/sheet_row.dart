@@ -19,7 +19,6 @@ class SheetRow {
   String membershipType = 'Premium 4 Year';
   String jacketStyle = 'Male';
   String jacketSize = 'L';
-  String sportsFormat = 'Digital';
 
   // Miscellaneous
   bool capPickedUp = false;
@@ -50,7 +49,7 @@ class SheetRow {
         jacketSize,
         _boolToString(jacketPickedUp),
         _boolToString(capPickedUp),
-        sportsFormat,
+        '',
         _boolToString(paymentConfirmed),
         _boolToString(boardInterest),
         _boolToString(volunteerInterest)

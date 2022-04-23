@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 import 'pages/home_page.dart';
 
@@ -15,7 +16,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor, // Hex: 2C3872
         scaffoldBackgroundColor: backgroundColor, // Hex: ABBAF2
-        fontFamily: 'Avenir Next'
+        appBarTheme: AppBarTheme(
+          backgroundColor: primaryColor,
+        ),
+        fontFamily: GoogleFonts.nunitoSans().fontFamily,
       ),
       home: HomePage(),
       navigatorObservers: [

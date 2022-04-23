@@ -65,7 +65,7 @@ class NumberTextField extends StatelessWidget {
     return TextFormField(
       cursorColor: primaryColor,
       style: inputStyle,
-      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         labelText: label,

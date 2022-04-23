@@ -59,7 +59,6 @@ class SubmitButton extends StatelessWidget {
       message.addAll([
         Text('${sheetRow.membershipType} Membership'),
         Text('Jacket: ${sheetRow.jacketStyle} ${sheetRow.jacketSize}'),
-        Text('Sports Program Format: ${sheetRow.sportsFormat}'),
         Text('Cap ${sheetRow.capPickedUp ? '' : 'not '}picked up'),
         Text('Jacket ${sheetRow.jacketPickedUp ? '' : 'not '}picked up'),
         Text('Payment ${sheetRow.paymentConfirmed ? '' : 'not '}confirmed'),

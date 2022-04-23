@@ -16,7 +16,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
     'membershipType': sheetRow.membershipType,
     'jacketStyle': sheetRow.jacketStyle,
     'jacketSize': sheetRow.jacketSize,
-    'sportsFormat': sheetRow.sportsFormat,
   };
 
   Widget _radioGroup({List<String> titles, @required List<String> values, @required String name, bool column = false}) {
@@ -62,7 +61,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
     sheetRow.membershipType = _radioInputs['membershipType'];
     sheetRow.jacketStyle = _radioInputs['jacketStyle'];
     sheetRow.jacketSize = _radioInputs['jacketSize'];
-    sheetRow.sportsFormat = _radioInputs['sportsFormat'];
   }
 
   @override
@@ -104,16 +102,6 @@ class _MembershipPageState extends PageState<MembershipPage> {
             input: _radioGroup(
               name: 'jacketSize',
               values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
-            ),
-          ),
-        ),
-        Visibility(
-          visible: _radioInputs['membershipType'] != 'Contact Info Only',
-          child: LabeledInput(
-            title: 'Sports Program Format',
-            input: _radioGroup(
-              name: 'sportsFormat',
-              values: ['Digital', 'Printed']
             ),
           ),
         ),
