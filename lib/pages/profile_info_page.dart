@@ -92,7 +92,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
               cursorColor: primaryColor,
               keyboardType: TextInputType.emailAddress,
               style: inputStyle,
-              validator: (val) => EmailValidator.validate(val, true) ? null : 'Not a valid email.',
+              validator: (val) => EmailValidator.validate(val ?? '', true) ? null : 'Not a valid email.',
               decoration: InputDecoration(
                 labelText: 'Email',
               ),
@@ -122,7 +122,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   items: _years,
                   onChanged: (val) {
                     setState(() {
-                      _gradYear = val;
+                      _gradYear = val ?? '';
                     });
                   },
                 ),
@@ -157,7 +157,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
                   items: _states,
                   onChanged: (val) {
                     setState(() {
-                      _state = val;
+                      _state = val ?? '';
                     });
                   },
                 ),
@@ -177,7 +177,7 @@ class _ProfileInfoPageState extends PageState<ProfileInfoPage> {
           SubmitButton(
             state: this,
             routeBuilder: (_) => MembershipPage(),
-            condition: () => _formKey.currentState.validate()
+            condition: () => _formKey.currentState!.validate()
           ),
         ],
       ),

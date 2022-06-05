@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 abstract class PageState<Page extends StatefulWidget> extends State<Page> {
   bool _loading = false;
+
+  GlobalKey scaffoldKey = GlobalKey();
 
   void startLoading() {
     setState(() => _loading = true);
@@ -21,6 +23,7 @@ abstract class PageState<Page extends StatefulWidget> extends State<Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: buildAppBar(context),
       body: ModalProgressHUD(
         inAsyncCall: _loading,

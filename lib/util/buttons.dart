@@ -8,9 +8,9 @@ import '../sheet_row.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
-  PrimaryButton({@required this.text, this.onPressed});
+  PrimaryButton({required this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +40,11 @@ class PrimaryButton extends StatelessWidget {
 
 class SubmitButton extends StatelessWidget {
   final bool done;
-  final WidgetBuilder routeBuilder;
+  final WidgetBuilder? routeBuilder;
   final PageState state;
-  final bool Function() condition;
+  final bool Function()? condition;
 
-  SubmitButton({this.done = false, this.routeBuilder, @required this.state, this.condition}) : assert(done || routeBuilder != null);
+  SubmitButton({this.done = false, this.routeBuilder, required this.state, this.condition}) : assert(done || routeBuilder != null);
 
   void _confirm(BuildContext context) {
     List<Text> message = [
@@ -99,8 +99,8 @@ class SubmitButton extends StatelessWidget {
     state.startLoading();
 
     http.Response res = await http.post(
-      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/1:1:append?valueInputOption=USER_ENTERED',
-      headers: await googleSignIn.currentUser.authHeaders,
+      Uri.parse('https://sheets.googleapis.com/v4/spreadsheets/$sheetId/values/1:1:append?valueInputOption=USER_ENTERED'),
+      headers: await googleSignIn.currentUser!.authHeaders,
       body: jsonEncode({
         'majorDimension': 'ROWS',
         'values': [sheetRow.getList()]
@@ -132,13 +132,13 @@ class SubmitButton extends StatelessWidget {
     return PrimaryButton(
       text: done ? 'Complete' : 'Next',
       onPressed: () {
-        if (condition == null || condition()) {
+        if (condition == null || condition!()) {
           state.update();
           if (done) {
-            _confirm(context);
+            _confirm(state.scaffoldKey.currentContext!);
           } else {
             Navigator.push(context, MaterialPageRoute(
-              builder: routeBuilder
+              builder: routeBuilder!
             ));
           }
         }

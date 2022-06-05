@@ -18,7 +18,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
     'jacketSize': sheetRow.jacketSize,
   };
 
-  Widget _radioGroup({List<String> titles, @required List<String> values, @required String name, bool column = false}) {
+  Widget _radioGroup({List<String>? titles, required List<String> values, required String name, bool column = false}) {
     if (titles == null) {
       titles = values;
     } else {
@@ -37,7 +37,7 @@ class _MembershipPageState extends PageState<MembershipPage> {
             groupValue: _radioInputs[name],
             onChanged: (val) {
               setState(() {
-                _radioInputs[name] = val;
+                _radioInputs[name] = val as String;
               });
             },
           ),
@@ -58,9 +58,9 @@ class _MembershipPageState extends PageState<MembershipPage> {
 
   @override
   void update() {
-    sheetRow.membershipType = _radioInputs['membershipType'];
-    sheetRow.jacketStyle = _radioInputs['jacketStyle'];
-    sheetRow.jacketSize = _radioInputs['jacketSize'];
+    sheetRow.membershipType = _radioInputs['membershipType']!;
+    sheetRow.jacketStyle = _radioInputs['jacketStyle']!;
+    sheetRow.jacketSize = _radioInputs['jacketSize']!;
   }
 
   @override

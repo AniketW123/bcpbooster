@@ -29,7 +29,7 @@ class SheetRow {
 
   List<String> getList() {
     List<String> list = [
-      googleSignIn.currentUser.email,
+      googleSignIn.currentUser!.email,
       formatDate(DateTime.now(), [mm, '-', dd, '-', yyyy, ' ', h, ':', nn, ' ', am]), // e.g. 02-20-2020 1:22 PM
       firstName,
       lastName,

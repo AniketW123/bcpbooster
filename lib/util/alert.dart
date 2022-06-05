@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void alert({@required BuildContext context, @required String title, Widget message, List<Widget> actions}) {
+void alert({required BuildContext context, required String title, Widget? message, List<Widget>? actions}) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -17,8 +17,8 @@ void alert({@required BuildContext context, @required String title, Widget messa
 
 class AlertButton extends StatelessWidget {
   final String title;
-  final Color textColor;
-  final VoidCallback onPressed;
+  final Color? textColor;
+  final VoidCallback? onPressed;
 
   AlertButton(this.title, {this.textColor, this.onPressed});
 

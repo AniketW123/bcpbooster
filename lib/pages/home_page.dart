@@ -20,8 +20,8 @@ class _HomePageState extends PageState<HomePage> {
     startLoading();
 
     http.Response res = await http.get(
-      'https://sheets.googleapis.com/v4/spreadsheets/$sheetId',
-      headers: await googleSignIn.currentUser.authHeaders,
+      Uri.parse('https://sheets.googleapis.com/v4/spreadsheets/$sheetId'),
+      headers: await googleSignIn.currentUser!.authHeaders,
     );
 
     stopLoading();
@@ -56,7 +56,7 @@ class _HomePageState extends PageState<HomePage> {
     }
   }
 
-  void _userChanged(GoogleSignInAccount account) {
+  void _userChanged(GoogleSignInAccount? account) {
     if (account?.id != null) {
       _getSheet();
     } else {
@@ -77,7 +77,7 @@ class _HomePageState extends PageState<HomePage> {
     );
   }
   
-  Widget _link(String text, {String url}) {
+  Widget _link(String text, {required String url}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.0),
       child: GestureDetector(

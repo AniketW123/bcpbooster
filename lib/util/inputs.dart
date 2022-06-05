@@ -7,7 +7,7 @@ class LabeledInput extends StatelessWidget {
   final Widget input;
   final bool isChoice;
 
-  LabeledInput({@required this.title, @required this.input, this.isChoice = false});
+  LabeledInput({required this.title, required this.input, this.isChoice = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,10 @@ class LabeledInput extends StatelessWidget {
 }
 
 class TextFieldPadding extends StatelessWidget {
-  final int flex;
+  final int? flex;
   final Widget child;
 
-  TextFieldPadding({this.flex, @required this.child});
+  TextFieldPadding({this.flex, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +47,18 @@ class TextFieldPadding extends StatelessWidget {
     );
 
     return flex == null ? padding : Expanded(
-      flex: flex,
+      flex: flex!,
       child: padding,
     );
   }
 }
 
 class NumberTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final int maxLength;
   final ValueChanged<String> onChanged;
 
-  NumberTextField({this.label, this.maxLength, @required this.onChanged});
+  NumberTextField({this.label, required this.maxLength, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class NumberTextField extends StatelessWidget {
       maxLength: maxLength,
       onChanged: onChanged,
       validator: (val) {
-        if (val.length < maxLength) {
+        if (val!.length < maxLength) {
           return 'Must be $maxLength digits long.';
         }
         return null;
@@ -83,10 +83,10 @@ class NumberTextField extends StatelessWidget {
 }
 
 class WordsTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final ValueChanged<String> onChanged;
 
-  WordsTextField({this.label, @required this.onChanged});
+  WordsTextField({this.label, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class WordsTextField extends StatelessWidget {
       style: inputStyle,
       textCapitalization: TextCapitalization.words,
       validator: (val) {
-        if (val.length == 0) {
+        if (val!.length == 0) {
           return 'Must contain text.';
         }
         return null;
@@ -110,12 +110,12 @@ class WordsTextField extends StatelessWidget {
 
 
 class DropdownTextField extends StatelessWidget {
-  final String label;
+  final String? label;
   final String value;
   final List<String> items;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String?> onChanged;
 
-  DropdownTextField({this.label, @required this.value, @required this.items, @required this.onChanged});
+  DropdownTextField({this.label, required this.value, required this.items, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

@@ -45,7 +45,7 @@ class _MiscPageState extends PageState<MiscPage> {
             value: _capPickedUp,
             onChanged: (val) {
               setState(() {
-                _capPickedUp = val;
+                _capPickedUp = val ?? false;
               });
             },
           ),
@@ -56,7 +56,7 @@ class _MiscPageState extends PageState<MiscPage> {
             value: _jacketPickedUp,
             onChanged: (val) {
               setState(() {
-                _jacketPickedUp = val;
+                _jacketPickedUp = val ?? false;
               });
             },
           ),
@@ -67,7 +67,7 @@ class _MiscPageState extends PageState<MiscPage> {
             value: _paymentConfirmed,
             onChanged: (val) {
               setState(() {
-                _paymentConfirmed = val;
+                _paymentConfirmed = val ?? false;
               });
             },
           ),
@@ -78,7 +78,7 @@ class _MiscPageState extends PageState<MiscPage> {
             value: _boardInterest,
             onChanged: (val) {
               setState(() {
-                _boardInterest = val;
+                _boardInterest = val ?? false;
               });
             },
           ),
@@ -89,7 +89,7 @@ class _MiscPageState extends PageState<MiscPage> {
             value: _volunteerInterest,
             onChanged: (val) {
               setState(() {
-                _volunteerInterest = val;
+                _volunteerInterest = val ?? false;
               });
             },
           ),

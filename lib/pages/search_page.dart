@@ -35,8 +35,8 @@ class _SearchPageState extends PageState<SearchPage> {
     startLoading();
 
     http.Response res = await http.get(
-      'https://sheets.googleapis.com/v4/spreadsheets/$searchSheetId/values/C2:D',
-      headers: await googleSignIn.currentUser.authHeaders,
+      Uri.parse('https://sheets.googleapis.com/v4/spreadsheets/$searchSheetId/values/C2:D'),
+      headers: await googleSignIn.currentUser!.authHeaders,
     );
 
     if (res.statusCode != 200) {

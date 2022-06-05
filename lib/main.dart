@@ -1,11 +1,15 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 import 'pages/home_page.dart';
 
-void main() => runApp(App());
+void main() async {
+  await Firebase.initializeApp();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
@@ -22,9 +26,6 @@ class App extends StatelessWidget {
         fontFamily: GoogleFonts.nunitoSans().fontFamily,
       ),
       home: HomePage(),
-      navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-      ],
     );
   }
 }
