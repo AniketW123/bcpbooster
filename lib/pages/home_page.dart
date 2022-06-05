@@ -120,7 +120,7 @@ class _HomePageState extends PageState<HomePage> {
       centerTitle: true,
       title: Text('BCP Booster Club'),
       actions: [
-        FlatButton(
+        TextButton(
           child: Text(
             'Login',
             style: TextStyle(

@@ -73,7 +73,7 @@ class _SearchPageState extends PageState<SearchPage> {
             Text('The following members match your query. Click a name to edit that person\'s status.'),
             ...List.generate(names.length, (i) {
               String name = '${names.elementAt(i)[0]} ${names.elementAt(i)[1]}';
-              return FlatButton(
+              return TextButton(
                 child: Text(name),
                 onPressed: () {
                   Navigator.pushReplacement(

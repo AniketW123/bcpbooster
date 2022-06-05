@@ -16,18 +16,20 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.0),
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(
           text,
           style: TextStyle(
             fontSize: 28.0,
           ),
         ),
-        color: primaryColor, // Hex: 2C3872
-        textColor: Colors.white,
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+        style: ElevatedButton.styleFrom(
+          primary: primaryColor, // Hex: 2C3872
+          onPrimary: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 40.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
         ),
         onPressed: onPressed,
       ),

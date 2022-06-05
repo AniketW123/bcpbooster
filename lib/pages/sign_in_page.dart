@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'page.dart';
 import '../constants.dart';
 
@@ -32,7 +32,8 @@ class _SignInPageState extends PageState<SignInPage> {
               ),
             ),
           ),
-          GoogleSignInButton(
+          SignInButton(
+            Buttons.Google,
             onPressed: googleSignIn.signIn,
           ),
         ],
