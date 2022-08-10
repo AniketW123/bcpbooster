@@ -14,7 +14,7 @@ const List<String> _states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'F
                               'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
                               'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
-final int _currYear = DateTime.now().add(Duration(days: 255)).year;
+final int _currYear = DateTime.now().add(Duration(days: 306)).year;
 final List<String> _years = [_currYear, _currYear + 1, _currYear + 2, _currYear + 3]
     .map((e) => e.toString()).toList();
 
